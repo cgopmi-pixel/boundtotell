@@ -1,0 +1,28 @@
+{
+  "saved_version": 23,
+  "source_commit": "90662e7de96b090925bfea071af67cb497fe9fea",
+  "path": "versions/23/index.html",
+  "files": {
+    "common.js": "1ae8dce8d8225eeec6cccefa699adf3a951c2e3dd9d275dbb05cbbde04464638",
+    "index.html": "2d72c64bf4792a0137cdb75530eff04f4ad0dad5e9d80e3d5a7e4dadcd1becb9",
+    "responsive.css": "db24a2f14e555fc37fa1db8972e35f6dd9191ebd0c9ad7ef1af52336c29cd33c",
+    "home.css": "f0263658ff77a8e1852690f632a1e8ed02a66950590e5ace1bbe22b545fdd5b2",
+    "site.css": "c037f831a99e2927a9d1a1d212cb01b43dd3f60aac1c5a1352caf619caaa3f36",
+    "contact.html": "0a14617341ca02584c6fec74206935839175aa138c2439c355a80b8b1a76fc06",
+    "packages.html": "a2cb2b083513c746d9d1ed36e9021e7f458c109cdd427d8d5e55f86140faf8ff",
+    "packages-ui.js": "503b16ea65b21cb0b0a319f57249dc8533215253ec784047fddfd20bdcdbbe72",
+    "robots.txt": "416c8507f6a33e3f85842851e8ee61a65b0dceb287a505bcf6f3cdcca57e07a6",
+    "package-data.js": "e0b34c4436c350665b964b4423cab45ae9ca8627b51573270255734068d635d2",
+    "assets/favicon.svg": "cc3befd8c0f2522c76be87ebaabde4eaa47d9eb48e4a4fa660c8550f4ec8e97e",
+    "assets/editorial-serif-bold-italic.otf": "63e15828175e55559ae09c9bdcd09fc0354537657d43109edb6e2a5509f8299f",
+    "assets/editorial-serif.otf": "f054a7389d8d0e9f4c5f7b4c21feb7e2b14bec8004a1e92778a78d149524eea9",
+    "assets/body-sans.otf": "7c25be4d78155523080ab85b10277150657ff7dabbcad7037bdd536c9b6d0d08",
+    "assets/ad-bookcase-wall.webp": "0fd036c10fad7cdf01f5de83e6d6ae62373cc22ebd4cedb9f1e0233e1bd063f0",
+    "assets/bound-to-tell-logo.png": "2008715dd07826e6e85e5a5dbfda0c4eb54492da84aadb730d960afd6ba0700a",
+    "assets/body-sans-bold.otf": "7f33328e6b4d4cd21b45fa625791928c9407dc702db6780e56b09ca9a3ecaa67",
+    "assets/editorial-serif-italic.otf": "1feac6055211cf5c6c812c026e398195070f174064cc4d390f0db01647443b0e",
+    "assets/book/sample-pdf-40.webp": "0a50a8237170a0b0b53d66ea7f2539b7c7dceabcd5f18f44460c616fb2dd683d",
+    "assets/book/sample-pdf-39.webp": "4e02383a6cc0ae3b3d152ca2525c361a4af8b4568ff426716729082ac28469b7",
+    "assets/book/sample-pdf-38.webp": "dea1eb471406558d3aaac797b7a253bd35763e6e8a014283a08bef0320d2c6b0"
+  }
+}

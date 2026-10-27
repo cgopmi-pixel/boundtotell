@@ -1,0 +1,38 @@
+#package-print { display: none; }
+@media print {
+  @page { size: landscape; margin: 10mm; }
+  html, html.dialog-open { scrollbar-gutter: auto; background: #fff; overflow: visible !important; }
+  body, body.dialog-open { display: block; position: static; margin: 0; background: #fff; color: #1e1b17; }
+  body > *:not(#package-print) { display: none !important; }
+  #package-print { display: block; padding-bottom: 10mm; font: 9pt/1.35 var(--sans); }
+  #package-print, #package-print * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  #package-print p { color: #29251f; }
+  .print-heading { display: block; width: 100%; margin-bottom: 4mm; }
+  .print-logo { display: block; width: 45mm; height: auto; margin: 0 auto 2mm; }
+  .print-heading h1 { display: block; margin: 0; text-align: left; font: 20pt/1.1 var(--serif); color: var(--brown); letter-spacing: 0; }
+  .print-inclusions { margin-bottom: 4mm; font-size: 8.5pt; line-height: 1.5; }
+  #print-comparison { width: 100%; min-width: 0; border-collapse: collapse; table-layout: fixed; font-size: 9pt; }
+  .print-label-column { width: 15%; }
+  #print-comparison th, #print-comparison td { border: .3mm solid #89907f; padding: 2.5mm 3mm; text-align: left; vertical-align: top; overflow-wrap: break-word; }
+  #print-comparison thead th:first-child, #print-comparison tbody th { border-right: .5mm solid #68735f; }
+  #print-comparison th, #print-comparison td { position: static; box-shadow: none; }
+  #print-comparison thead { display: table-header-group; }
+  #print-comparison tr { break-inside: avoid; page-break-inside: avoid; }
+  #print-comparison thead th { background: #edf0e7; color: #1e1b17; }
+  #print-comparison thead th:first-child { width: auto; font-size: 9pt; }
+  #print-comparison thead strong { display: block; font: 700 10.5pt/1.25 var(--sans); color: var(--brown); }
+  #print-comparison thead .print-package-name { display: block; margin: 1.5mm 0; font: 13pt/1.15 var(--serif); }
+  #print-comparison thead .print-price { display: block; margin: 0; font: 10pt/1.25 var(--sans); color: var(--brown); }
+  #print-comparison tbody th { background: #f5f4ef; font-size: 9pt; font-weight: 400; }
+  #print-comparison .fine-row th, #print-comparison .fine-row td { font-size: 8pt; color: #777; border-color: #b7b7b7; background: #fff; }
+  #print-comparison .fine-row th { border-right-color: #b7b7b7; }
+  #print-comparison .custom-note { vertical-align: middle; }
+  #print-comparison .copy-options td { font-size: 7.5pt; }
+  .print-notes { margin-top: 3mm; font-size: 8pt; line-height: 1.45; }
+  #package-print .print-notes p { color: #777; }
+  .print-contact { position: fixed; bottom: 0; left: 0; width: 100%; display: table; table-layout: fixed; border-top: .4mm solid #89907f; padding-top: 3mm; font-size: 10pt; color: var(--brown); }
+  .print-contact span { display: table-cell; width: 33.333%; }
+  .print-contact span:nth-child(2) { text-align: center; }
+  .print-contact span:last-child { text-align: right; }
+  a { color: inherit; text-decoration: none; }
+}

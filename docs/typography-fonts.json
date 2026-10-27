@@ -1,0 +1,62 @@
+[
+  {
+    "font": "Nunito Sans Normal",
+    "style": "Regular",
+    "asset": "nunito-sans-latin.woff2",
+    "bytes": 19620,
+    "source": "nunitosans-NunitoSans[YTLC,opsz,wdth,wght].ttf",
+    "source_sha256": "f934d7142fb4784bf828da485b7dcbd90c0c80d514e9d49a5da0ed3a1ae2491d",
+    "asset_sha256": "8fbd6a27c659f4578155bf250989c27c0da0a7cf21a761ceaff4aa2f8b85ff2d",
+    "glyph_count": 777
+  },
+  {
+    "font": "Nunito Sans Normal",
+    "style": "Bold",
+    "asset": "nunito-sans-latin-bold.woff2",
+    "bytes": 19496,
+    "source": "nunitosans-NunitoSans[YTLC,opsz,wdth,wght].ttf",
+    "source_sha256": "f934d7142fb4784bf828da485b7dcbd90c0c80d514e9d49a5da0ed3a1ae2491d",
+    "asset_sha256": "69ad5205515e91b4c90aaec579a6ac62a1746fbe4a669df525045a201ab85b72",
+    "glyph_count": 777
+  },
+  {
+    "font": "Nunito Sans Normal",
+    "style": "Italic",
+    "asset": "nunito-sans-latin-italic.woff2",
+    "bytes": 20708,
+    "source": "nunitosans-NunitoSans-Italic[YTLC,opsz,wdth,wght].ttf",
+    "source_sha256": "d9d5db18f3c11221a4fbb553cbc709391c1179964c7eaa4466ef43c78aa4492f",
+    "asset_sha256": "983d9b1bac290838a7df4f093d5816d8671ed57dcd943b6d7b0ab3c3738bbdba",
+    "glyph_count": 776
+  },
+  {
+    "font": "Nunito Sans Normal",
+    "style": "Bold Italic",
+    "asset": "nunito-sans-latin-bold-italic.woff2",
+    "bytes": 20676,
+    "source": "nunitosans-NunitoSans-Italic[YTLC,opsz,wdth,wght].ttf",
+    "source_sha256": "d9d5db18f3c11221a4fbb553cbc709391c1179964c7eaa4466ef43c78aa4492f",
+    "asset_sha256": "0eb00f990830bb85b23601b82909f05ac310fe34983f4bc9eede2795aa69c7dd",
+    "glyph_count": 776
+  },
+  {
+    "font": "Raleway",
+    "style": "Regular",
+    "asset": "raleway-latin.woff2",
+    "bytes": 38272,
+    "source": "raleway-Raleway[wght].ttf",
+    "source_sha256": "8bbcc3eb8275c388f4bcd998832f8a4b943eadbaf6a595205312774b5951aefb",
+    "asset_sha256": "f0727f33df05579b746d0a493c7d8e3b0db2481fa1dddcaf0f502c9fd1c02127",
+    "glyph_count": 719
+  },
+  {
+    "font": "Raleway",
+    "style": "Italic",
+    "asset": "raleway-latin-italic.woff2",
+    "bytes": 39304,
+    "source": "raleway-Raleway-Italic[wght].ttf",
+    "source_sha256": "96629caf2202183fab46c70237055a7d67e6a5400b85413d45a77ed6f2a0770c",
+    "asset_sha256": "50e3f1c7a89f486b87baf2901443c655546a54db6858364ee6546e20ca1c28ca",
+    "glyph_count": 698
+  }
+]

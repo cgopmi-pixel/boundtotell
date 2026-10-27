@@ -1,0 +1,9 @@
+{
+  "name": "bound-to-tell",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "test": "node tests/interactions.cjs"
+  }
+}

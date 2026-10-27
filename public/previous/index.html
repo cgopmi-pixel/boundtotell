@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Everyone has a story to tell. Turn memories into a beautiful book with Bound to Tell — personal and family memoirs.">
+  <meta name="theme-color" content="#563313">
+  <title>Bound to Tell — Personal &amp; Family Memoirs</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./responsive.css">
+  <script src="./packages.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#main" aria-label="Bound to Tell home"><img src="./assets/bound-to-tell-logo.png" alt="Bound to Tell — Personal & Family Memoirs" width="798" height="301"></a>
+      <nav aria-label="Main navigation"><a id="begin-link" href="#top">Begin</a><a href="#packages">Packages</a><a href="#contact-us">Contact us</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="intro" aria-labelledby="hero-title">
+      <div class="hero wrap">
+        <div class="hero-copy">
+          <h1 id="hero-title">The stories they tell deserve a place on <em>your bookshelf.</em></h1>
+          <p class="hero-description">Everyone has a story to tell. Make sure your loved one's doesn't go lost.</p>
+          <p class="hero-book-line">Turn memories into a beautiful book for the family to cherish.</p>
+          <div class="hero-actions"><button id="sample-open" class="button sample-button" aria-haspopup="dialog" aria-controls="sample-dialog">View a sample of our work</button></div>
+          <p class="hero-footnote">For the memories you treasure.<br>For the generations who will treasure them, too.</p>
+        </div>
+        <figure class="hero-figure">
+          <div class="photo-frame"><img src="./assets/ad-bookcase-wall.webp" alt="Naturally proportioned narrow wooden bookcase with warm shelf lighting, books and greenery, extended from the Bound to Tell ad" width="864" height="1821"></div>
+        </figure>
+      </div>
+    </section>
+    <section id="packages" class="packages-section" aria-labelledby="packages-title">
+      <div class="wrap">
+        <div class="section-heading"><div><h2 id="packages-title">Packages</h2><p class="packages-subtitle">Choose the scope that fits.</p></div></div>
+        <div id="included" class="included">
+          <div class="included-heading"><h3>Every package includes</h3></div>
+          <ul class="inclusions" id="inclusions"></ul>
+        </div>
+        <div class="package-controls">
+          <div class="fit-bar"><p>What would you like to preserve?</p><div class="fit-options" role="group" aria-label="Find a package by story scope"><button data-fit="treasured" aria-pressed="false">Selected memories</button><button data-fit="life" aria-pressed="false">Life milestones</button><button data-fit="full" aria-pressed="false">The full life story</button><button data-fit="legacy" aria-pressed="false">An extensive family history</button></div></div>
+          <div class="view-switch" role="group" aria-label="Package display"><button id="cards-view" class="active" aria-pressed="true" aria-controls="package-cards">Overview</button><button id="table-view" aria-pressed="false" aria-controls="comparison-panel">Compare details</button></div>
+        </div>
+        <p id="fit-feedback" class="fit-feedback" aria-live="polite">Select a scope to highlight its matching package, or explore all four below.</p>
+        <div class="package-grid" id="package-cards"></div>
+        <div id="comparison-panel" hidden>
+          <p class="table-instruction">Compare all four packages side by side. <span>On smaller screens, swipe across the table.</span></p>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Memoir package comparison"><table id="comparison-table"><caption class="sr-only">Bound to Tell package details and prices</caption></table></div>
+        </div>
+        <div class="pricing-note"><span class="note-symbol" aria-hidden="true">i</span><p>Page counts are approximate and depend on the number of photographs, typography, and layout. Additional interviews, interviewees, writing, photographs, revisions, and printed copies are available at an additional cost. Color interiors, specialty materials, and shipping are quoted separately. All quotes are estimates only.</p></div>
+      </div>
+    </section>
+    <section id="your-choice" class="choice-section" aria-labelledby="choice-heading">
+      <div class="wrap choice-layout">
+        <div class="choice-intro"><h2 id="choice-heading">Let’s tell<br><em>your story.</em></h2><p id="choice-instruction">Select a package and download or save the details to decide on the best fit.</p><p class="choice-assurance">Your selection is for planning.<br>It does not place an order or send an inquiry.</p></div>
+        <div class="choice-panel">
+          <div id="empty-choice"><h3 id="empty-choice-heading" tabindex="-1">Every story starts somewhere.</h3><p>Explore the packages and select the one that feels right for your family.</p><a href="#packages" class="text-link">Explore the packages <span aria-hidden="true">↑</span></a></div>
+          <div id="selected-choice" hidden>
+            <div class="selected-topline"><p class="eyebrow">Your selection</p><button id="clear-choice" class="button clear-button"><svg class="clear-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m7 7 10 10M17 7 7 17"/></svg>Remove selection</button></div>
+            <h3 id="selected-name" tabindex="-1"></h3><p id="selected-price" class="selected-price"></p><p id="selected-description"></p>
+            <ul id="selected-details" class="summary-details"></ul>
+            <p id="legacy-note" class="legacy-note" hidden>The scope and a price estimate are determined following an initial consultation. The items above are possible project elements; the final scope is tailored to your family.</p>
+            <details class="summary-inclusions"><summary>Also included in your package</summary><ul id="summary-inclusions-list"></ul></details>
+            <div class="summary-actions"><button id="save-summary" class="button primary">Download details <span aria-hidden="true">↓</span></button><button id="print-summary" class="button secondary">Print / save PDF</button></div>
+            <p class="summary-note">Additional items and separately quoted costs apply as noted above. All quotes are estimates only.</p>
+          </div>
+          <p id="action-status" class="action-status" role="status"></p>
+        </div>
+      </div>
+    </section>
+    <section class="testimonials" aria-labelledby="testimonials-title">
+      <div class="wrap">
+        <h2 id="testimonials-title">What families are saying</h2>
+        <div class="testimonial-grid">
+        <figure class="testimonial"><blockquote><p>“The grandchildren love it! We're so excited to have our mother's legacy preserved for coming generations in such an attractive and enjoyable format.”</p></blockquote><figcaption>Chana G.</figcaption></figure>
+        <figure class="testimonial"><blockquote><p>“We've always heard bits and pieces of my grandmother's fascinating life story. To have it all beautifully written up and presented is priceless.”</p></blockquote><figcaption>Chavi S.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="contact-us"><div class="wrap footer-inner"><div class="contact-intro"><h2>Want to preserve your family’s story?<br><em>Let’s connect.</em></h2></div><div class="contact-details"><p><span class="contact-label">Call or SMS</span><a href="tel:+17323440886">732.344.0886</a></p><p><span class="contact-label">Email</span><a href="mailto:info@boundtotell.com">info@boundtotell.com</a></p></div><div class="footer-wordmark">Bound <em>to</em> Tell<small>PERSONAL &amp; FAMILY MEMOIRS</small><p class="footer-copyright">© 2026 Bound to Tell</p></div></div></footer>
+  <dialog id="sample-dialog" class="sample-dialog" aria-labelledby="sample-dialog-title"><div class="dialog-header"><div class="sample-title"><p class="sample-wordmark">Bound <em>to</em> Tell</p><h2 id="sample-dialog-title">A sample of our work</h2></div><button id="sample-close" class="icon-button" aria-label="Close sample viewer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m7 7 10 10M17 7 7 17"/></svg></button></div><div class="sample-page"><img id="sample-image" src="./assets/book/sample-pdf-38.webp" alt="Sample memoir, PDF page 38" width="864" height="1296" loading="lazy"></div><div class="sample-controls"><button id="sample-prev" class="icon-button" aria-label="Previous sample page" disabled><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 6-6 6 6 6"/></svg></button><p id="sample-caption" aria-live="polite">Page 1 of 3</p><button id="sample-next" class="icon-button" aria-label="Next sample page"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"/></svg></button></div></dialog>
+  <div id="print-content" aria-hidden="true"></div>
+  <noscript><div class="noscript">This comparison uses JavaScript. Please enable it to explore and select your memoir package.</div></noscript>
+</body>
+</html>

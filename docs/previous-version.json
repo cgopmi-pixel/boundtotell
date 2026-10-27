@@ -1,0 +1,22 @@
+{
+  "source_commit": "95e24039bb9b5e62ef9424a92ab4e23ab29ff18d",
+  "saved_version": 21,
+  "path": "previous/index.html",
+  "files": {
+    "app.js": "0983456f8d977fe0f04b45feeac1e21e5bb7f7490fe7be9301e0084ff979ba29",
+    "assets/ad-bookcase-wall.webp": "0fd036c10fad7cdf01f5de83e6d6ae62373cc22ebd4cedb9f1e0233e1bd063f0",
+    "assets/body-sans-bold.otf": "7f33328e6b4d4cd21b45fa625791928c9407dc702db6780e56b09ca9a3ecaa67",
+    "assets/body-sans.otf": "7c25be4d78155523080ab85b10277150657ff7dabbcad7037bdd536c9b6d0d08",
+    "assets/book/sample-pdf-38.webp": "dea1eb471406558d3aaac797b7a253bd35763e6e8a014283a08bef0320d2c6b0",
+    "assets/book/sample-pdf-39.webp": "4e02383a6cc0ae3b3d152ca2525c361a4af8b4568ff426716729082ac28469b7",
+    "assets/book/sample-pdf-40.webp": "0a50a8237170a0b0b53d66ea7f2539b7c7dceabcd5f18f44460c616fb2dd683d",
+    "assets/bound-to-tell-logo.png": "2008715dd07826e6e85e5a5dbfda0c4eb54492da84aadb730d960afd6ba0700a",
+    "assets/editorial-serif-italic.otf": "1feac6055211cf5c6c812c026e398195070f174064cc4d390f0db01647443b0e",
+    "assets/editorial-serif.otf": "f054a7389d8d0e9f4c5f7b4c21feb7e2b14bec8004a1e92778a78d149524eea9",
+    "assets/favicon.svg": "cc3befd8c0f2522c76be87ebaabde4eaa47d9eb48e4a4fa660c8550f4ec8e97e",
+    "index.html": "98d2561334b5fdf6082f72d16acb1b82cb58a6abb3e8634fe638f9d061f64cc7",
+    "packages.js": "63fe43c68cb35572efd4e728ac899aaf303418b7bac5cf7422f3aa0823a28048",
+    "responsive.css": "bf31e9d9962607275eaca0031b99d4ac8f3a81ff4b9076acd2b6ecc42d4ef194",
+    "styles.css": "2ba3647a07dced4f42bcc371e401f0bdf37d5c3cb7b901bb2d89dac532b0b8b4"
+  }
+}

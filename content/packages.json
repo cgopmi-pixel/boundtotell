@@ -1,0 +1,68 @@
+{
+  "inclusions": [
+    "Personal, guided interviews",
+    "Writing, story development and editing",
+    "Interior and cover design",
+    "Photograph placement and captions",
+    "Published books",
+    "Print-ready digital edition"
+  ],
+  "priceNote": "Additional interviews, interviewees, writing, photographs, revisions and printed copies are available for an additional charge. Color interiors, specialty materials, and shipping are quoted separately.",
+  "packages": [
+    {
+      "id": "classic",
+      "tier": "Classic Package",
+      "name": "Treasured Memories",
+      "description": "A comprehensive book preserving stories and memories.",
+      "distinction": "Best suited to a selected group of stories rather than an entire life history.",
+      "pages": "35–45 pages",
+      "interviewees": "1 interviewee",
+      "photos": "12 photographs",
+      "copies": "2 softcover copies",
+      "words": "8,000 words",
+      "hours": "Up to 4 hours of interviews",
+      "revisions": "2 revision rounds"
+    },
+    {
+      "id": "signature",
+      "tier": "Signature Package",
+      "name": "A Life in Words",
+      "description": "A full memoir covering the major stages of a life story.",
+      "distinction": "Allows for a detailed life story to be told, including a wide variety of periods, people and experiences.",
+      "pages": "70–90 pages",
+      "interviewees": "2 interviewees",
+      "photos": "25 photographs",
+      "copies": "3 hardcover copies",
+      "words": "18,000 words",
+      "hours": "Up to 7 hours of interviews",
+      "revisions": "3 revision rounds"
+    },
+    {
+      "id": "premier",
+      "tier": "Premier Package",
+      "name": "The Full Story",
+      "description": "A lengthy, in-depth memoir covering the full life and family story.",
+      "distinction": "Provides room for the complete life story, including family background and the people and events that shaped it.",
+      "pages": "115–140 pages",
+      "interviewees": "3 interviewees",
+      "photos": "45 photographs",
+      "copies": "5 hardcover copies",
+      "words": "28,000 words",
+      "hours": "Up to 11 hours of interviews",
+      "revisions": "3 revision rounds"
+    },
+    {
+      "id": "custom",
+      "tier": "Custom Package",
+      "name": "Family Legacy",
+      "description": "A comprehensive, carefully researched account that brings together the family’s history, records, and stories.",
+      "distinction": "A comprehensive, carefully researched account that brings together the family’s history, records, and stories.",
+      "pages": "Page count tailored to your project",
+      "interviewees": "Numerous interviewees",
+      "photos": "Extensive photograph organization",
+      "copies": "Printed copies – custom quantities",
+      "customized": "Word count, interview hours and revision rounds custom"
+    }
+  ],
+  "pageNote": "Page counts are approximate and depend on the number of photographs, typography, and layout."
+}

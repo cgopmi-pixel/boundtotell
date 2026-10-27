@@ -1,0 +1,210 @@
+/* Shared reflow, safe areas, and touch controls. */
+:root {
+  --page-gutter: 40px;
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scrollbar-gutter: stable; }
+@supports not (scrollbar-gutter: stable) {
+  html { overflow-y: scroll; }
+}
+.wrap {
+  width: 100%;
+  padding-left: max(var(--page-gutter), var(--safe-left));
+  padding-right: max(var(--page-gutter), var(--safe-right));
+}
+button, .button, nav a, summary { -webkit-tap-highlight-color: #698c6026; }
+.button, .icon-button, .view-switch button { min-height: 48px; }
+.icon-button { width: 48px; height: 48px; flex: none; }
+.contact-address, .package-card, .faq-list, .testimonial-grid figure { overflow-wrap: break-word; }
+.site-footer { padding-bottom: max(24px, var(--safe-bottom)); }
+html.dialog-open { overflow: hidden; scroll-behavior: auto; }
+body.dialog-open { position: fixed; inset-inline: 0; overflow: hidden; width: auto; }
+
+/* The close control and page controls remain outside the scrolling content. */
+.dialog {
+  --dialog-gap: 16px;
+  --dialog-left: max(var(--dialog-gap), var(--safe-left));
+  --dialog-right: max(var(--dialog-gap), var(--safe-right));
+  --dialog-top: max(var(--dialog-gap), var(--safe-top));
+  --dialog-bottom: max(var(--dialog-gap), var(--safe-bottom));
+  inset: 0;
+  height: fit-content;
+  width: calc(100% - var(--dialog-left) - var(--dialog-right));
+  max-height: calc(100svh - var(--dialog-top) - var(--dialog-bottom));
+  max-height: calc(100dvh - var(--dialog-top) - var(--dialog-bottom));
+  overflow: hidden;
+}
+.dialog-header { grid-template-columns: minmax(0, 1fr) 48px; }
+.sample-dialog .dialog-header { grid-template-columns: 48px minmax(0, 1fr) 48px; }
+.inquiry-body, .sample-page { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.sample-page { overflow: auto; }
+.sample-page:focus-visible { outline: 3px solid #98732f; outline-offset: -3px; }
+.sample-page.is-zoomed img { width: max(100%, 864px); max-width: none; max-height: none; }
+.sample-controls {
+  display: grid;
+  grid-template-columns: 48px minmax(72px, 100px) 48px 48px;
+  gap: 12px;
+  justify-content: center;
+  padding: 12px 16px;
+}
+.sample-controls p { min-width: 0; }
+#sample-zoom[aria-pressed=true] .zoom-plus { display: none; }
+.inquiry-body .contact-options { align-items: stretch; }
+.inquiry-body .contact-method .button { flex: none; }
+
+/* Package surfaces highlight on click; their titles also work with a keyboard. */
+.package-controls { margin-bottom: 25px; justify-content: flex-end; }
+.package-highlight { border: 0; background: transparent; padding: 6px 0; min-height: 44px; color: inherit; text-align: inherit; line-height: inherit; }
+.package-tier.package-highlight { color: var(--brown); line-height: 1.25; }
+#comparison-table .package-highlight { display: block; width: 100%; }
+.package-card[data-package-card], #comparison-table [data-column] { cursor: pointer; }
+@media (hover: hover) {
+  .package-highlight:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .package-card[data-package-card]:hover { border-color: var(--sage); }
+}
+
+/* Retain the feature labels while moving between package columns. */
+.table-scroll { --comparison-label-width: 140px; scroll-padding-inline-start: var(--comparison-label-width); }
+.comparison-label-column { width: var(--comparison-label-width); }
+
+@media (max-width: 1150px), (pointer: coarse) {
+  .package-grid { grid-auto-rows: auto; }
+  .package-controls { flex-direction: column; align-items: stretch; gap: 16px; }
+
+
+  .view-switch { align-self: flex-end; margin: 0; }
+  .table-scroll {
+    --comparison-label-width: 112px;
+    max-height: 72svh;
+    overflow: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-top: 0;
+  }
+  #comparison-table thead th { position: sticky; top: 0; z-index: 2; }
+  #comparison-table thead th:first-child { width: var(--comparison-label-width); left: 0; z-index: 3; }
+  #comparison-table thead th[data-column] { scroll-snap-align: start; }
+  #comparison-table thead th.highlighted-column { box-shadow: inset 0 3px var(--dark-sage); }
+  #comparison-table tbody th { position: sticky; left: 0; z-index: 1; }
+  #comparison-table td { overflow-wrap: break-word; }
+  .table-instruction { line-height: 1.65; }
+  .table-instruction span { display: inline; }
+  .sample-page img { width: 100%; max-height: none; }
+}
+
+@media (max-width: 900px) {
+  :root { --page-gutter: 28px; }
+  .contact-card .contact-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+  .contact-card { padding: 28px; }
+  .contact-method .button { font-size: 15px; }
+}
+
+@media (max-width: 759px) {
+  .home-hero::before {
+    top: auto;
+    width: 100%;
+    height: min(540px, 60%);
+    background:
+      linear-gradient(to top, var(--hero-fade-profile)) left top / 100% var(--hero-fade-distance) no-repeat,
+      linear-gradient(to bottom, var(--hero-fade-profile)) left bottom / 100% var(--hero-fade-distance) no-repeat,
+      #e3e8dc;
+  }
+  .home-hero .hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 38px; }
+  .home-hero .hero-copy { width: 100%; }
+  .home-hero .hero h1 { font-size: clamp(36px, 9vw, 48px); max-width: 650px; }
+  .home-hero .hero-image { max-width: 200px; justify-self: center; }
+
+
+  .view-switch { align-self: stretch; width: 100%; }
+  .view-switch button { flex: 1; font-size: 14px; }
+  .testimonial-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 650px) {
+  :root { --page-gutter: 18px; }
+  .header-inner { min-height: 0; padding-top: max(8px, var(--safe-top)); padding-bottom: 12px; gap: 10px; }
+  .brand img { width: 176px; }
+  nav a { min-height: 48px; font-size: 14px; }
+  .home-hero .hero { padding-top: 34px; padding-bottom: 52px; }
+  .home-hero .hero-description { font-size: 17px; line-height: 1.65; }
+  .sample-button { width: 100%; font-size: 15px; padding-inline: 14px; }
+  .prose > p { font-size: 22px; line-height: 1.5; }
+  .faq-list details { padding-inline: 18px; }
+  .faq-list summary { font-size: 21px; min-height: 76px; }
+  .faq-answer { font-size: 17px; line-height: 1.75; }
+  .page-heading { padding-top: 32px; padding-bottom: 24px; }
+  .included { padding: 22px 20px; }
+  .included li { font-size: 15px; line-height: 1.6; }
+  .package-card { padding: 24px; }
+  .package-card h2 { line-height: 1.15; }
+  .package-description, .package-features { font-size: 16px; line-height: 1.6; }
+  .package-features li { line-height: 1.55; margin-bottom: 14px; }
+  .package-fine, .fine-print, .copy-note { font-size: 12.5px; line-height: 1.65; }
+  .pricing-note { font-size: 13px; line-height: 1.75; }
+  .package-actions .button { min-height: 52px; font-size: 16px; }
+  .fit-feedback { font-size: 14px; }
+  .table-scroll { --comparison-label-width: 96px; }
+  /* One complete package plus its labels fits the scrolling area. */
+  #comparison-table {
+    width: calc(400% - var(--comparison-label-width) - var(--comparison-label-width) - var(--comparison-label-width));
+    min-width: 0;
+  }
+  #comparison-table thead th:first-child { width: var(--comparison-label-width); }
+  #comparison-table th, #comparison-table td { padding: 16px 12px; }
+  #comparison-table td { font-size: 15px; line-height: 1.55; }
+  #comparison-table .fine-row td, #comparison-table .fine-row th { font-size: 12.5px; }
+  #comparison-table .button { font-size: 14px; }
+  .table-instruction { font-size: 13px; }
+  .contact-layout { padding: 24px 18px; gap: 26px; margin: 0; }
+  .contact-copy h2 { font-size: 31px; line-height: 1.25; }
+  .contact-copy > p { font-size: 16px; line-height: 1.7; }
+  .contact-card { padding: 22px 16px; }
+  .contact-card .contact-options { grid-template-columns: minmax(0, 1fr); gap: 25px; }
+  .contact-address { font-size: 20px; }
+  .contact-method .button { min-height: 50px; }
+  .dialog { --dialog-gap: 8px; border-radius: 6px; }
+  .dialog-header, .inquiry-dialog .dialog-header { padding-inline: 18px; }
+  .sample-dialog .dialog-header { gap: 5px; padding-inline: 10px; }
+  .dialog-title h2 { font-size: 23px; }
+  .wordmark { font-size: 20px; }
+  .sample-page { padding: 10px; }
+  .sample-controls { gap: 8px; padding: 10px; }
+  .inquiry-body { padding: 12px 18px 22px; font-size: 16px; }
+  .inquiry-body .contact-method { padding: 18px 16px; }
+  .inquiry-body .contact-options { gap: 12px; }
+  .inquiry-body .email-note { font-size: 12px; margin-top: 22px; }
+  .site-footer p { font-size: 12px; }
+}
+
+@media (max-width: 360px) {
+  .package-card { padding: 22px 20px; }
+  .prose > p { font-size: 21px; }
+  .dialog-title h2 { font-size: 21px; }
+  .wordmark { font-size: 19px; }
+  .contact-copy h2 { font-size: 29px; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .header-inner { min-height: 72px; padding-block: 6px; gap: 16px; }
+  .brand img { width: 150px; }
+  .home-hero .hero { display: grid; grid-template-columns: 1.3fr .7fr; gap: 32px; padding-block: 26px; }
+  .home-hero .hero h1 { font-size: 34px; }
+  .home-hero .hero-image { max-width: 145px; }
+  .home-hero .hero-description { margin-block: 20px; }
+  .dialog-header { padding-block: 12px; }
+  .wordmark { font-size: 19px; margin-bottom: 4px; }
+  .dialog-title h2 { font-size: 23px; }
+  .inquiry-dialog .dialog-header { padding-top: 12px; }
+  .inquiry-label { font-size: 20px; margin-bottom: 4px; }
+  .inquiry-dialog h2 { font-size: 22px; }
+  .inquiry-description { font-size: 25px; margin-bottom: 14px; }
+  .sample-controls { padding-block: 8px; }
+}
+@media (min-width: 540px) and (max-height: 500px) and (orientation: landscape) {
+  .header-inner { flex-wrap: nowrap; }
+  nav { width: auto; flex: 0 1 auto; gap: 3px; }
+  nav a { min-width: 72px; min-height: 44px; padding: 8px; font-size: 13px; }
+  .inquiry-body .contact-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

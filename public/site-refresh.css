@@ -1,0 +1,169 @@
+@font-face { font-family: "Nunito Sans"; src: url('./assets/nunito-sans-latin.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Nunito Sans"; src: url('./assets/nunito-sans-latin-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Nunito Sans"; src: url('./assets/nunito-sans-latin-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Nunito Sans"; src: url('./assets/nunito-sans-latin-bold-italic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: Raleway; src: url('./assets/raleway-latin.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: Raleway; src: url('./assets/raleway-latin-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+/* Keep the existing typography roles and all their size/color/layout rules. */
+:root { --serif: "Nunito Sans", Arial, sans-serif; --sans: "Nunito Sans", Arial, sans-serif; --tagline: Raleway, "Nunito Sans", Arial, sans-serif; }
+.home-story h1 { font-family: var(--tagline); }
+
+@media screen {
+  /* Version 35 fades within the upper page section, before the rest of the page. */
+  html {
+    --page-heading-size: 36px;
+    --page-fade-distance: clamp(240px, 26vw, 340px);
+    --page-fade-profile: rgba(255,253,249,0) 0%, rgba(255,253,249,.08) 24%, rgba(255,253,249,.3) 50%, rgba(255,253,249,.7) 79%, var(--paper) 100%;
+    --page-gradient-height: clamp(300px, 50svh, 500px);
+    background: var(--paper);
+  }
+  body { background: var(--paper); }
+  .site-header, .site-footer { background: #fff; }
+  #main {
+    /* Same colors, stops and 240–340px transition as version 35's .home-hero::before.
+       Its green layer ends near 500px in the supplied desktop reference, rather
+       than following the entire viewport to the footer. The solid layer below
+       the translucent fade recreates that original composition without moving
+       the current introduction or changing the height of any page. */
+    background:
+      linear-gradient(to bottom, var(--page-fade-profile)) 0 calc(var(--page-gradient-height) - var(--page-fade-distance)) / 100% var(--page-fade-distance) no-repeat,
+      linear-gradient(#e3e8dc, #e3e8dc) left top / 100% var(--page-gradient-height) no-repeat,
+      var(--paper);
+  }
+  .header-inner { gap: 28px; }
+  .brand { flex: 0 0 auto; }
+  #site-navigation { flex: 0 1 900px; min-width: 0; margin-left: auto; justify-content: space-between; }
+  #site-navigation a { flex: 1; }
+
+  /* One story column, with the bookcase beside the full introduction. */
+  .home-story { padding-top: calc(44px + 18px * var(--home-fit, 1)); padding-bottom: calc(12px + 12px * var(--home-fit, 1)); }
+  .home-story-grid { display: grid; grid-template-columns: minmax(0, 1fr) calc(170px + 55px * var(--home-fit, 1)); align-items: stretch; gap: clamp(44px, 7vw, 96px); max-width: 1280px; }
+  .home-story-copy { min-width: 0; align-self: center; }
+  .home-story h1 { max-width: 760px; font-size: calc((28px + 8px * var(--home-fit, 1)) * var(--home-type-scale, .92) * var(--home-tagline-scale, .94)); line-height: 1.12; letter-spacing: -.7px; margin-bottom: calc(18px + 8px * var(--home-fit, 1)); }
+  .home-story h1 em { color: var(--brown); }
+  .home-story-prose { max-width: none; margin-left: clamp(14px, 2vw, 28px); }
+  .home-story-prose > p { font-family: var(--serif); color: var(--brown); font-size: calc((15px + 3.5px * var(--home-fit, 1)) * var(--home-type-scale, .92)); line-height: 1.45; }
+  .home-story-prose p + p { margin-top: calc(10px + 4px * var(--home-fit, 1)); }
+  .home-story-prose > .about-promise { font-size: calc((18px + 3.5px * var(--home-fit, 1)) * var(--home-type-scale, .92)); line-height: 1.35; color: var(--brown); }
+  .home-story-image { display: flex; align-items: center; position: relative; min-width: 0; margin: 0; }
+  .bookcase-frame { position: relative; isolation: isolate; width: 100%; }
+  .bookcase-frame::before { content: ''; position: absolute; inset: -12px 12px 12px -12px; border: 1px solid #c6ae91; border-radius: 6px; z-index: -1; }
+  .home-story-image img { display: block; width: 100%; height: auto; border-radius: 5px; box-shadow: 0 12px 24px #3f250d20; }
+
+  .package-heading-row .section-title, .faq-page .page-heading .section-title { font-size: var(--page-heading-size); }
+  .package-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .package-heading-row .view-switch { width: auto; margin: 0; align-self: center; flex: 0 0 auto; }
+  .package-card .card-top { min-height: 24px; }
+  .package-card .package-tier { display: block; text-align: left; font-size: 17px; font-weight: 700; line-height: 1.25; color: var(--brown); }
+  .package-card h2, .custom-package h2 { min-height: 63px; }
+  .custom-package .package-description { margin-top: 0; align-items: flex-start; }
+  .package-card:focus-visible, #comparison-table th[data-column]:focus-visible { outline: 3px solid #98732f; outline-offset: 3px; }
+
+  .sample-dialog .dialog-title { min-width: 0; }
+  .sample-dialog .dialog-title h2 { color: var(--dark-sage); }
+  .sample-dialog .sample-viewer-logo { display: block; width: 150px; max-width: 100%; height: auto; margin: 0 auto 8px; }
+
+  /* A larger vertical sample at left; client quotations at right. */
+  .samples-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(52px, 8vw, 112px); align-items: stretch; max-width: 1280px; padding-top: 40px; padding-bottom: 36px; }
+  .sample-column { display: flex; align-items: center; justify-content: center; min-width: 0; }
+  .samples-layout .sample-preview { display: block; width: 100%; max-width: 375px; padding: 0; margin: 0; background: transparent; box-shadow: none; border: 0; line-height: 0; }
+  .samples-layout .sample-preview img { width: 100%; height: auto; box-shadow: 0 6px 22px #3f250d24; border-radius: 3px; }
+  .sample-preview-label { display: block; margin-top: 16px; font-family: var(--serif); font-size: 30px; font-style: italic; line-height: 1.2; color: var(--dark-sage); }
+  .client-testimonials { min-width: 0; width: 100%; max-width: 410px; justify-self: center; }
+  .client-testimonials .section-title { font-size: 30px; text-align: center; line-height: 1.2; letter-spacing: 0; margin-bottom: 24px; }
+  .client-testimonials .testimonial-grid { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 18px; }
+  .client-testimonials figure { position: relative; aspect-ratio: 1.2; padding: 24px 28px 30px; background: var(--paper); border: 1px solid #cdd7c4; border-radius: 5px; }
+  .client-testimonials .quote-mark { font-family: var(--serif); font-size: 46px; line-height: .7; color: #91a780; margin: 2px 0 12px; }
+  .client-testimonials blockquote { font-family: var(--serif); color: var(--brown); font-size: 20px; line-height: 1.45; }
+  .client-testimonials figcaption { font-family: var(--sans); font-size: 14px; font-weight: 700; letter-spacing: .02em; color: var(--dark-sage); padding-top: 16px; padding-right: 42px; }
+  .client-testimonials .closing-quote { position: absolute; right: 24px; bottom: 18px; margin: 0; }
+  .faq-page { padding-top: 0; }
+  .contact-page { padding-top: 96px; }
+}
+
+@media screen and (max-width: 1000px) {
+  html { --page-heading-size: 32px; }
+  .header-inner { gap: 18px; }
+  .home-story-grid { grid-template-columns: minmax(0, 1fr) calc(130px + 25px * var(--home-fit, 1)); gap: 40px; }
+  .package-card .package-tier { font-size: 15px; }
+  .package-card h2, .custom-package h2 { min-height: 56px; }
+  .samples-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px; padding-top: 28px; padding-bottom: 28px; }
+  .samples-layout .sample-preview { max-width: 310px; }
+  .sample-preview-label { font-size: 28px; }
+  .client-testimonials .section-title { font-size: 28px; margin-bottom: 20px; }
+  .client-testimonials figure { padding: 18px 20px 24px; }
+  .client-testimonials blockquote { font-size: 18px; }
+  .client-testimonials figcaption { font-size: 13px; }
+  .faq-page { padding-top: 0; }
+  .contact-page { padding-top: 76px; }
+}
+
+@media screen and (max-width: 760px) {
+  .sample-dialog .sample-viewer-logo { width: 135px; }
+  .header-inner { gap: 10px; }
+  html { --page-heading-size: 28px; --page-fade-distance: 80px; --page-gradient-height: clamp(220px, 40svh, 300px); }
+  #site-navigation { flex-basis: 100%; margin-left: 0; }
+  .home-story { padding-block: 26px 18px; }
+  .home-story-grid { grid-template-columns: minmax(0, 1fr) clamp(75px, 23vw, 160px); gap: 22px; }
+  .home-story h1 { font-size: clamp(21px, 3.3vw, 26px); margin-bottom: 18px; }
+  .home-story-prose { margin-left: 12px; }
+  .home-story-prose > p { font-size: 13.5px; line-height: 1.4; }
+  .home-story-prose > .about-promise { font-size: 16px; line-height: 1.35; }
+  .home-story-prose p + p { margin-top: 10px; }
+  .bookcase-frame { position: sticky; top: 16px; }
+  .bookcase-frame::before { inset: -6px 6px 6px -6px; }
+  .package-heading-row { gap: 12px; padding-block: 18px; }
+  .package-heading-row .view-switch button { padding-inline: 10px; font-size: 11.5px; }
+  .package-card h2, .custom-package h2 { min-height: 0; }
+  .samples-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px; padding-top: 20px; padding-bottom: 24px; }
+  .sample-preview-label { font-size: 24px; margin-top: 12px; }
+  .client-testimonials .section-title { font-size: 24px; margin-bottom: 16px; }
+  .client-testimonials .testimonial-grid { gap: 12px; }
+  .client-testimonials figure { aspect-ratio: auto; padding: 14px 16px 22px; }
+  .client-testimonials .quote-mark { font-size: 34px; margin-bottom: 10px; }
+  .client-testimonials blockquote { font-size: 15px; line-height: 1.4; }
+  .client-testimonials figcaption { font-size: 12px; padding-top: 12px; padding-right: 30px; }
+  .client-testimonials .closing-quote { right: 14px; bottom: 14px; }
+  .faq-page { padding-top: 0; }
+  .contact-page { padding-top: 48px; }
+}
+
+@media screen and (max-width: 540px) {
+  html { --page-heading-size: 26px; }
+  .home-story-grid { grid-template-columns: minmax(0, 1fr) clamp(66px, 21vw, 105px); gap: 18px; }
+  .home-story h1 { font-size: 21.5px; }
+  .home-story-prose { margin-left: 8px; }
+  .home-story-prose > p { font-size: 12.5px; }
+  .home-story-prose > .about-promise { font-size: 15px; }
+  .home-story-prose p + p { margin-top: 9px; }
+  .package-heading-row { gap: 8px; }
+  .package-heading-row .view-switch { gap: 2px; padding: 3px; }
+  .package-heading-row .view-switch button { padding-inline: 7px; font-size: 10.5px; }
+  .samples-layout { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 18px; }
+  .sample-preview-label { font-size: 23px; }
+  .client-testimonials .section-title { font-size: 23px; }
+  .client-testimonials figure { padding: 12px 12px 20px; }
+  .client-testimonials blockquote { font-size: 14px; }
+  .client-testimonials figcaption { font-size: 11.5px; }
+}
+
+@media screen and (max-width: 360px) {
+  .home-story h1 { font-size: 20px; }
+  .home-story-prose > p { font-size: 12.5px; }
+  .home-story-prose > .about-promise { font-size: 15px; }
+  .package-heading-row .view-switch button { padding-inline: 6px; font-size: 10px; }
+  .client-testimonials .section-title { font-size: 23px; }
+  .client-testimonials blockquote { font-size: 13.5px; }
+}
+
+@media screen and (min-width: 761px) and (max-height: 850px) {
+  .samples-layout { padding-block: 28px; }
+  .client-testimonials figure { aspect-ratio: auto; padding: 18px 24px 24px; }
+  .client-testimonials blockquote { font-size: 18px; line-height: 1.4; }
+  .client-testimonials .quote-mark { font-size: 38px; margin-bottom: 10px; }
+  .client-testimonials figcaption { padding-top: 12px; }
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .sample-dialog .sample-viewer-logo { width: 115px; margin-bottom: 4px; }
+}
