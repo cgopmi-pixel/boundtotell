@@ -59,16 +59,13 @@ for(const file of ['index.html','packages.html','samples.html','faqs.html','cont
  assert(!html.includes('noindex, nofollow'),'Primary pages must not retain draft indexing metadata');
 }
 const home=environment('index.html');
-for(const text of copy.about)assert(decode(home.html).includes(text));
 const faqPage=environment('faqs.html'),samplesPage=environment('samples.html');
 for(const faq of copy.faqs){assert(decode(faqPage.html).includes(faq.question));for(const text of faq.answer)assert(decode(faqPage.html).includes(text));}
 assert.equal(copy.faqs.length,8);assert(!faqPage.html.includes('What photographs or documents should we gather?'));
 assert(faqPage.html.includes('What if I don’t have a real story to tell?'));assert(faqPage.html.includes('Do I need to prepare anything before the interviews?'));
 assert(!/\bconsult\b/.test(faqPage.html));assert(faqPage.html.includes('estimated costs and expected timeline.'));
 assert(copy.about.at(-1).startsWith('Our mission is to give families a lasting legacy:'));
-assert(home.html.includes('<strong>'+copy.about[copy.aboutBoldIndex]+'</strong>'));
 assert(!home.html.includes('Turn memories into a beautiful book for the family to cherish.'));assert(!home.html.includes('For the memories you treasure.'));
-assert(home.html.replace(/<[^>]+>/g,'').includes('The stories they tell deserve a place on'));assert(!home.html.includes("Everyone has a story to tell. Ensure your loved one's is preserved."));assert(!home.html.includes('>About us</h2>'));assert.equal(home.select('.home-story-grid').length,1);
 assert(samplesPage.html.includes('Chana G.'));assert(samplesPage.html.includes('Chavi S.'));assert(!home.html.includes('faq-1'));
 for(const t of copy.testimonials)assert(decode(samplesPage.html).includes(t.quote));
 for(const opener of samplesPage.select('[data-open-sample]')){opener.click();assert(samplesPage.e('sample-dialog').open);samplesPage.click('sample-dialog-close');assert.equal(samplesPage.captured.focus,opener);}
@@ -178,7 +175,7 @@ for(const p of data.packages){
 assert(!packagesHTML.includes('data-fit='));assert(!packagesHTML.includes('Select to highlight a package'));assert(!packagesHTML.includes('explore all four below'));assert(!packagesHTML.includes('your-choice'));assert(!packagesHTML.includes('Download details'));assert(!packagesHTML.includes('Selected memories'));
 assert.equal(data.inclusions.at(-2),'Published books');assert.equal(data.inclusions.at(-1),'Print-ready digital edition');
 const original={window:{}};vm.runInNewContext(fs.readFileSync(path.join(dist,'previous/packages.js'),'utf8'),original);
-data.packages.forEach((p,i)=>{const old=original.window.BOUND_TO_TELL.packages[i];assert(!Object.hasOwn(p,'price'));if(i<3){assert.equal(p.hours,old.interviews);assert.equal(p.words,old.wordLimit.replace(/^Up to /,''));assert.equal(p.pages,i===0?'35–45 pages':old.pages.replace(/^Approximately /,''));assert.equal(p.copies,old.copies);}});
+data.packages.forEach((p,i)=>{const old=original.window.BOUND_TO_TELL.packages[i];assert.equal(p.price,['$4,500','$7,500','$11,000','Custom quote'][i]);if(i<3){assert.equal(p.hours,old.interviews);assert.equal(p.words,old.wordLimit.replace(/^Up to /,''));assert.equal(p.pages,i===0?'35–45 pages':old.pages.replace(/^Approximately /,''));assert.equal(p.copies,old.copies);}});
 const contact=environment('contact.html');expectedSubject(contact.e('contact-email').getAttribute('href'),'Memoir inquiry');
 assert(!contact.html.includes('estimated costs'));assert(!contact.html.includes('Your email app will open'));assert(!contact.html.includes('Connect</a>'));
 for(const html of [packagesHTML,contact.html]){
@@ -214,16 +211,21 @@ const printStyles=fs.readFileSync(path.join(dist,'print.css'),'utf8');assert(pri
 for(const [file,title]of [['samples.html','From our Satisfied Clients'],['packages.html','Packages'],['faqs.html','Frequently Asked Questions']]){
  const html=fs.readFileSync(path.join(dist,file),'utf8');assert(new RegExp('<h[12][^>]*class="section-title"[^>]*>'+title+'</h[12]>').test(html));
 }
-// Current publication has no price data, while preserved versions retain their originals.
-assert(!/\$[\d,]+/.test(packagesHTML));assert(!/"price"\s*:/.test(fs.readFileSync(path.join(dist,'package-data.js'),'utf8')));
+// Current publication shows the approved prices: Classic $4,500, Signature $7,500, Premier $11,000.
+for(const v of ['$4,500','$7,500','$11,000'])assert(packagesHTML.includes(v));
 assert(packagesHTML.includes('A comprehensive book preserving stories and memories.'));
 assert(packagesHTML.indexOf('class="view-switch"')<packagesHTML.indexOf('id="included-heading"'));
 assert(!packagesHTML.includes('class="package-controls"'));
 assert(faqPage.html.includes('<h1 id="faq-heading" class="section-title">Frequently Asked Questions</h1>'));
 assert(contact.html.includes('<h1 class="sr-only">Contact Us</h1>'));assert(!contact.html.includes('<h1 class="section-title">Contact Us</h1>'));assert(contact.html.includes('>Contact Us</a>'));
-assert(home.html.indexOf('id="hero-title"')<home.html.indexOf('class="prose home-story-prose"'));
-assert(home.html.indexOf('class="prose home-story-prose"')<home.html.indexOf('class="home-story-image"'));
-assert.equal(home.select('.bookcase-frame').length,1);
+// Homepage redesign: eight sections in order, prices, mockups and the Schedule a Conversation dialog.
+{const order=['hp-hero','hp-why','hp-gift','hp-how','hp-matters','hp-product','hp-packages','hp-cta'].map(c=>home.html.indexOf('class="'+c+'"'));
+ order.forEach((v,i)=>{assert(v>0,'missing homepage section '+i);if(i)assert(v>order[i-1],'homepage section out of order '+i);});
+ const text=decode(home.html);for(const t of [copy.home.hero.title,copy.home.why.title,copy.home.gift.title,copy.home.matters.objection,copy.home.cta.title,'$4,500','$7,500','$11,000'])assert(text.includes(t),'homepage missing '+t);
+ assert(!/As told to/i.test(home.html));
+ for(const m of home.html.matchAll(/src="\.\/(assets\/[^"]+)"/g))assert(fs.existsSync(path.join(dist,m[1])),'missing homepage image '+m[1]);
+ assert(home.e('inquiry-dialog'));const dlgHTML=home.html.slice(home.html.indexOf('id="inquiry-dialog"'));assert(dlgHTML.includes('href="tel:+17323440886"'));assert(dlgHTML.includes('href="mailto:info@boundtotell.com'));
+ assert(home.select('[data-schedule]').length>=3);}
 assert(copy.about[0].includes('experiences and family'));assert(copy.about[1].startsWith('At Bound to Tell,'));
 for(const phrase of ['stories, and anecdotes','layout, and graphics','unique, published'])assert(!copy.about[2].includes(phrase));
 const refresh=fs.readFileSync(path.join(dist,'site-refresh.css'),'utf8');
@@ -243,5 +245,4 @@ for(const manifestName of ['previous-version.json','version-23.json','version-35
  }
 }
 assert(fs.readFileSync(path.join(dist,'robots.txt'),'utf8').includes('Disallow: /previous/'));assert(fs.readFileSync(path.join(dist,'robots.txt'),'utf8').includes('Disallow: /versions/'));
-require('./home-fit.cjs');
 console.log('PASS: five-page navigation and mobile menu; phone package browsing/swipes and tablet resize; revised copy, 8 FAQs and unchanged mission; print action in both views, continuous print comparison with gray fine-print rows and copy-footnote placement; thumbnail-only sample access; contacts, fixed-package quantities and archive hashes; all inquiry, mailto and dial actions; card and comparison-cell highlighting, nested event bubbling, plain tier labels, card/header keyboard controls and text selection; comparison-column reveal with controlled scroll geometry; dialog scroll lock/restore and focus; sample pages 38–40, keyboard, pan reset and zoom. Interaction fixtures: 320–1920px. DOM checks do not replace browser visual QA.');
