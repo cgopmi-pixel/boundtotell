@@ -21,7 +21,8 @@
       "copies": "2 softcover copies",
       "words": "8,000 words",
       "hours": "Up to 4 hours of interviews",
-      "revisions": "2 revision rounds"
+      "revisions": "2 revision rounds",
+      "price": "$4,500"
     },
     {
       "id": "signature",
@@ -35,7 +36,8 @@
       "copies": "3 hardcover copies",
       "words": "18,000 words",
       "hours": "Up to 7 hours of interviews",
-      "revisions": "3 revision rounds"
+      "revisions": "3 revision rounds",
+      "price": "$7,500"
     },
     {
       "id": "premier",
@@ -49,7 +51,8 @@
       "copies": "5 hardcover copies",
       "words": "28,000 words",
       "hours": "Up to 11 hours of interviews",
-      "revisions": "3 revision rounds"
+      "revisions": "3 revision rounds",
+      "price": "$11,000"
     },
     {
       "id": "custom",
@@ -61,7 +64,8 @@
       "interviewees": "Numerous interviewees",
       "photos": "Extensive photograph organization",
       "copies": "Printed copies – custom quantities",
-      "customized": "Word count, interview hours and revision rounds custom"
+      "customized": "Word count, interview hours and revision rounds custom",
+      "price": "Custom quote"
     }
   ],
   "pageNote": "Page counts are approximate and depend on the number of photographs, typography, and layout."

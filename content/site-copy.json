@@ -67,5 +67,71 @@
       "author": "Chavi S."
     }
   ],
-  "aboutBoldIndex": 1
+  "aboutBoldIndex": 1,
+  "home": {
+    "hero": {
+      "eyebrow": "Personal & family memoirs",
+      "title": "Turn a lifetime of memories into a book your family will treasure for generations.",
+      "text": "Through guided interviews, family photographs and letters, Bound to Tell turns a life story into a professionally written, beautifully designed book.",
+      "facts": [
+        "Packages from $4,500",
+        "Free initial consultation",
+        "Printed books for the whole family"
+      ]
+    },
+    "why": {
+      "title": "Every family’s story is worth preserving.",
+      "lead": "The stories you heard growing up.",
+      "prompts": [
+        "How your parents met.",
+        "What your grandfather remembers about coming to America.",
+        "The business your father built.",
+        "The recipes, the struggles, the funny moments, and the family history your children have never heard."
+      ],
+      "close": [
+        "Once those stories are gone, they can’t be recreated.",
+        "Bound to Tell helps families capture them now."
+      ]
+    },
+    "gift": {
+      "eyebrow": "The gift angle",
+      "title": "A gift for the person who already has everything — and has done so much for you.",
+      "text": "Instead of another gift that eventually gets put away, give your parent or grandparent the chance to tell their story — and give your whole family something they’ll keep forever."
+    },
+    "steps": [
+      {
+        "title": "We listen",
+        "text": "We conduct guided interviews and gather photographs, letters and other meaningful materials."
+      },
+      {
+        "title": "We create",
+        "text": "We organize and write the story, then professionally design the book."
+      },
+      {
+        "title": "Your family keeps it forever",
+        "text": "You receive beautifully printed copies to share with your family and future generations."
+      }
+    ],
+    "matters": {
+      "objection": "“But my life isn’t interesting enough for a book.”",
+      "answer": "Your grandchildren don’t need you to have been famous.",
+      "list": [
+        "What your childhood home looked like.",
+        "What your parents were like.",
+        "How you met your spouse.",
+        "What life was like when you were their age.",
+        "What you struggled through.",
+        "What you learned."
+      ],
+      "close": "Those are exactly the stories worth saving."
+    },
+    "product": {
+      "title": "See what you’re creating.",
+      "text": "Every Bound to Tell memoir is professionally written, designed and printed — a book that belongs on the coffee table, not in a drawer."
+    },
+    "cta": {
+      "title": "Whose story does your family need to preserve?",
+      "text": "Let’s talk about creating a book your family will have forever."
+    }
+  }
 }

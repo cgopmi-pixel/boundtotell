@@ -11,12 +11,73 @@ const logo=cls=>`<img class="${cls||''}" src="./assets/bound-to-tell-logo.png" a
 const cross='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>';
 function header(page){return `<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="./index.html" aria-label="Bound to Tell home">${logo()}</a><button id="nav-toggle" class="nav-toggle" aria-controls="site-navigation" aria-expanded="false" aria-label="Open menu" hidden>Menu <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><nav id="site-navigation" aria-label="Main navigation">${routes.map(([id,url,label])=>`<a href="./${url}"${id===page?' aria-current="page"':''}>${esc(label)}</a>`).join('')}</nav></div></header>`;}
 const footer=()=>`<footer class="site-footer"><div class="wrap">${logo('footer-logo')}<p>© 2026 Bound to Tell</p></div></footer>`;
-function shell(page,title,body,extras=''){return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#563313"><meta name="description" content="Bound to Tell — personal and family memoirs, thoughtfully written and designed."><title>${esc(title)} — Bound to Tell</title><link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="./assets/nunito-sans-latin.woff2" as="font" type="font/woff2" crossorigin>${page==='home'?'<link rel="preload" href="./assets/raleway-latin.woff2" as="font" type="font/woff2" crossorigin>':''}<link rel="stylesheet" href="./site.css">${page==='home'?'<link rel="stylesheet" href="./home.css">':''}<link rel="stylesheet" href="./responsive.css"><link rel="stylesheet" href="./compact.css"><link rel="stylesheet" href="./device-layout.css"><link rel="stylesheet" href="./site-refresh.css"><link rel="stylesheet" href="./small-screens.css" media="screen">${page==='packages'?'<link rel="stylesheet" href="./print.css">':''}${page==='home'?'<script src="./home-fit.js" defer></script>':''}<script src="./common.js" defer></script>${page==='packages'?'<script src="./package-data.js" defer></script><script src="./packages-ui.js" defer></script>':''}</head><body data-page="${page}">${header(page)}<main id="main">${body}</main>${footer()}${extras}</body></html>\n`;}
+function shell(page,title,body,extras=''){return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#563313"><meta name="description" content="Bound to Tell — personal and family memoirs, thoughtfully written and designed."><title>${esc(title)} — Bound to Tell</title><link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="./assets/nunito-sans-latin.woff2" as="font" type="font/woff2" crossorigin>${page==='home'?'<link rel="preload" href="./assets/raleway-latin.woff2" as="font" type="font/woff2" crossorigin>':''}<link rel="stylesheet" href="./site.css"><link rel="stylesheet" href="./responsive.css"><link rel="stylesheet" href="./compact.css"><link rel="stylesheet" href="./device-layout.css"><link rel="stylesheet" href="./site-refresh.css"><link rel="stylesheet" href="./small-screens.css" media="screen">${page==='home'?'<link rel="stylesheet" href="./home-v2.css">':''}${page==='packages'?'<link rel="stylesheet" href="./print.css">':''}<script src="./common.js" defer></script>${page==='home'?'<script src="./home.js" defer></script>':''}${page==='packages'?'<script src="./package-data.js" defer></script><script src="./packages-ui.js" defer></script>':''}</head><body data-page="${page}">${header(page)}<main id="main">${body}</main>${footer()}${extras}</body></html>\n`;}
 function sample(){return `<dialog id="sample-dialog" class="dialog sample-dialog" aria-labelledby="sample-title"><header class="dialog-header"><div class="dialog-title">${logo('sample-viewer-logo')}<h2 id="sample-title">Sample Memoir</h2></div><button id="sample-dialog-close" class="icon-button close-button" aria-label="Close sample viewer">${cross}</button></header><div class="sample-page" role="region" tabindex="0" aria-label="Sample memoir page"><img id="sample-image" src="./assets/book/sample-pdf-38.webp" alt="Sample memoir, PDF page 38" width="864" height="1296"></div><div class="sample-controls"><button id="sample-prev" class="icon-button" aria-label="Previous sample page" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button><p id="sample-caption" aria-live="polite">Page 1 of 3</p><button id="sample-next" class="icon-button" aria-label="Next sample page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button><button id="sample-zoom" class="icon-button" aria-label="Enlarge sample page" title="Enlarge sample page" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5M7 10h6"/><path class="zoom-plus" d="M10 7v6"/></svg></button></div></dialog>`;}
 function contactOptions(prefix){return `<div class="contact-options"><div class="contact-method"><span>Call or text</span><a class="button primary phone-connect" href="tel:+17323440886">732.344.0886</a></div><div class="contact-method"><span>Email</span><a id="${prefix}-email" class="button primary email-connect" href="${esc(email())}">info@boundtotell.com</a></div></div>`;}
 function inquiry(){return `<dialog id="inquiry-dialog" class="dialog inquiry-dialog" aria-labelledby="inquiry-title inquiry-package" aria-describedby="inquiry-instruction"><header class="dialog-header"><div><p id="inquiry-title" class="inquiry-label">Selected:</p><h2 id="inquiry-package"></h2></div><button id="inquiry-dialog-close" class="icon-button close-button" aria-label="Close package inquiry">${cross}</button></header><div class="inquiry-body"><p id="inquiry-description" class="inquiry-description"></p><p id="inquiry-instruction">Please select an option below to arrange a free initial consultation and discuss the story you'd like to preserve.</p>${contactOptions('inquiry')}</div></dialog>`;}
-function home(copy){
- return shell('home','Home',`<section class="home-story" aria-labelledby="hero-title"><div class="wrap home-story-grid"><div class="home-story-copy"><h1 id="hero-title">The stories they tell deserve a <br>place on <em>your bookshelf.</em></h1><div class="prose home-story-prose">${copy.about.map((t,i)=>`<p${i===copy.aboutBoldIndex?' class="about-promise"':''}>${i===copy.aboutBoldIndex?`<strong>${esc(t)}</strong>`:esc(t)}</p>`).join('')}</div></div><figure class="home-story-image"><div class="bookcase-frame"><img src="./assets/ad-bookcase-wall.webp" alt="A naturally proportioned single wooden bookcase with books, photographs and greenery" width="864" height="1821"></div></figure></div></section>`);
+const icon={
+ listen:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 30c0-9 6-16 14-16s14 7 14 16"/><path d="M8 30h6v10H8zM34 30h6v10h-6z"/></svg>',
+ create:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38 32 16l4 4-22 22H10z"/><path d="m29 19 4 4M8 8h14M8 14h9"/></svg>',
+ keep:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12c6-2 11-1 16 3 5-4 10-5 16-3v26c-6-2-11-1-16 3-5-4-10-5-16-3z"/><path d="M24 15v26"/></svg>'};
+function scheduleDialog(){return `<dialog id="inquiry-dialog" class="dialog inquiry-dialog" aria-labelledby="inquiry-package" aria-describedby="inquiry-instruction"><header class="dialog-header"><div><p class="inquiry-label">Schedule a conversation</p><h2 id="inquiry-package">Free initial consultation</h2></div><button id="inquiry-dialog-close" class="icon-button close-button" aria-label="Close">${cross}</button></header><div class="inquiry-body"><p id="inquiry-instruction">Call, text or email us and we’ll set up a time to talk about the story you’d like to preserve, the scope of the book, package options and timeline.</p>${contactOptions('schedule')}</div></dialog>`;}
+function home(copy,data){
+ const h=copy.home,schedule=(cls='primary')=>`<button class="button ${cls}" data-schedule aria-haspopup="dialog" aria-controls="inquiry-dialog">Schedule a Conversation</button>`;
+ const pk=data.packages.filter(p=>p.id!=='custom'),custom=data.packages.find(p=>p.id==='custom');
+ const body=`
+<section class="hp-hero" aria-labelledby="hero-title"><div class="wrap hp-hero-grid">
+ <div class="hp-hero-copy"><p class="hp-eyebrow">${esc(h.hero.eyebrow)}</p><h1 id="hero-title">${esc(h.hero.title)}</h1><p class="hp-lede">${esc(h.hero.text)}</p>
+ <div class="hp-actions"><a class="button primary" href="#packages">Explore Packages</a>${schedule('secondary')}</div>
+ <ul class="hp-facts">${h.hero.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>
+ <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell memoir, A Collection of Memories, standing on a wooden table beside a second copy" width="1500" height="1250" fetchpriority="high"></figure>
+</div></section>
+
+<section class="hp-why" aria-labelledby="why-title"><div class="wrap hp-narrow">
+ <h2 id="why-title" class="hp-h2">${esc(h.why.title)}</h2>
+ <p class="hp-why-lead">${esc(h.why.lead)}</p>
+ <ul class="hp-prompts">${h.why.prompts.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+ <p class="hp-why-close">${esc(h.why.close[0])} <strong>${esc(h.why.close[1])}</strong></p>
+</div></section>
+
+<section class="hp-gift" aria-labelledby="gift-title"><div class="wrap hp-split">
+ <figure class="hp-gift-media"><img src="./assets/mockups/family-copies.webp" alt="Three printed copies of a Bound to Tell memoir stacked on a wooden table" width="1600" height="1120" loading="lazy"></figure>
+ <div class="hp-gift-copy"><p class="hp-eyebrow">A meaningful gift</p><h2 id="gift-title" class="hp-h2">${esc(h.gift.title)}</h2><p>${esc(h.gift.text)}</p>${schedule('primary')}</div>
+</div></section>
+
+<section class="hp-how" aria-labelledby="how-title"><div class="wrap">
+ <h2 id="how-title" class="hp-h2 hp-center">How it works</h2>
+ <ol class="hp-steps">${h.steps.map((s,i)=>`<li><span class="hp-step-icon">${[icon.listen,icon.create,icon.keep][i]}</span><span class="hp-step-num">${i+1}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join('')}</ol>
+</div></section>
+
+<section class="hp-matters" aria-labelledby="matters-title"><div class="wrap hp-narrow">
+ <h2 id="matters-title" class="hp-objection">${esc(h.matters.objection)}</h2>
+ <p class="hp-answer">${esc(h.matters.answer)} <span>They want to know…</span></p>
+ <ul class="hp-memories">${h.matters.list.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+ <p class="hp-matters-close">${esc(h.matters.close)}</p>
+</div></section>
+
+<section class="hp-product" aria-labelledby="product-title"><div class="wrap">
+ <div class="hp-product-head"><h2 id="product-title" class="hp-h2">${esc(h.product.title)}</h2><p>${esc(h.product.text)}</p></div>
+ <div class="hp-gallery">
+  <figure class="hp-g-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1600" height="1120" loading="lazy"><figcaption>Interior spread — chapters, photographs and captions</figcaption></figure>
+  <figure class="hp-g-cover"><img src="./assets/mockups/cover-front.webp" alt="Front cover of A Collection of Memories" width="900" height="1370" loading="lazy"><figcaption>A custom-designed cover</figcaption></figure>
+  <figure class="hp-g-page"><img src="./assets/book/sample-pdf-39.webp" alt="A sample memoir page with a family photograph" width="864" height="1296" loading="lazy"><figcaption>Family photographs, restored and placed</figcaption></figure>
+  <figure class="hp-g-hand hp-placeholder" data-preview-only><div><strong>Photo to come</strong><span>The finished book in someone’s hands — best captured as a real photograph.</span></div><figcaption>Held, read and passed down</figcaption></figure>
+ </div>
+ <p class="hp-center"><a class="hp-link" href="./samples.html">Read sample pages →</a></p>
+</div></section>
+
+<section class="hp-packages" id="packages" aria-labelledby="packages-title"><div class="wrap">
+ <h2 id="packages-title" class="hp-h2 hp-center">Packages</h2>
+ <p class="hp-center hp-sub">Every package includes guided interviews, writing and editing, interior and cover design, photo placement, printed books and a print-ready digital edition.</p>
+ <div class="hp-pk-grid">${pk.map(p=>`<article class="hp-pk"><p class="hp-pk-tier">${esc(p.tier.replace(' Package',''))}</p><h3>${esc(p.name)}</h3><p class="hp-pk-price">${esc(p.price)}</p><p class="hp-pk-desc">${esc(p.description)}</p><ul><li>${esc(p.pages)}</li><li>${esc(p.interviewees)}</li><li>${esc(p.photos)}</li><li>${esc(p.copies)}</li><li>${esc(p.hours)}</li></ul><a class="button secondary" href="./packages.html#card-${p.id}">View Package Details</a></article>`).join('')}</div>
+ <p class="hp-center hp-custom">Planning a larger family history? Our <a href="./packages.html#card-custom">${esc(custom.name)}</a> package is quoted to fit your project.</p>
+</div></section>
+
+<section class="hp-cta" aria-labelledby="cta-title"><div class="wrap hp-narrow hp-center">
+ <h2 id="cta-title">${esc(h.cta.title)}</h2><p>${esc(h.cta.text)}</p>${schedule('light')}
+ <p class="hp-cta-contact"><a href="tel:+17323440886">732.344.0886</a><span aria-hidden="true">·</span><a href="${esc(email())}">info@boundtotell.com</a></p>
+</div></section>`;
+ return shell('home','Home',body,scheduleDialog());
 }
 function samples(copy){return shell('samples','Sample & Testimonials',`<div class="samples-layout wrap"><section class="sample-column" aria-label="Sample Memoir"><button id="sample-open" class="sample-preview" data-open-sample aria-label="Open Sample Memoir" aria-haspopup="dialog" aria-controls="sample-dialog"><img src="./assets/book/sample-pdf-38.webp" alt="Preview of Sample Memoir" width="864" height="1296"><span class="sample-preview-label">Sample Memoir</span></button></section><section class="client-testimonials" aria-labelledby="testimonials-heading"><h1 id="testimonials-heading" class="section-title">From our Satisfied Clients</h1><div class="testimonial-grid">${copy.testimonials.map(t=>`<figure><span class="quote-mark" aria-hidden="true">“</span><blockquote>${esc(t.quote)}</blockquote><figcaption>${esc(t.author)}</figcaption><span class="quote-mark closing-quote" aria-hidden="true">”</span></figure>`).join('')}</div></section></div>`,sample());}
 function faqs(copy){return shell('faqs','FAQs',`<section class="faq-page wrap" aria-labelledby="faq-heading"><header class="page-heading"><h1 id="faq-heading" class="section-title">Frequently Asked Questions</h1></header><div class="faq-list">${copy.faqs.map((f,i)=>`<details id="faq-${i+1}"><summary>${esc(f.question)}<span class="disclosure-symbol" aria-hidden="true"></span></summary><div class="faq-answer">${f.answer.map(t=>`<p>${esc(t)}</p>`).join('')}</div></details>`).join('')}</div></section>`);}
