@@ -168,7 +168,6 @@
   .sample-dialog .sample-viewer-logo { width: 115px; margin-bottom: 4px; }
 }
 /* Package prices */
-.package-card .package-price { font-size: 30px; font-weight: 700; color: var(--brown); letter-spacing: -.3px; margin: 6px 0 4px; line-height: 1.2; }
-.package-card.custom-package .package-price { font-size: 22px; }
-#comparison-table th .compare-price { display: block; margin-top: 6px; font-size: 18px; font-weight: 700; color: var(--brown); }
-#print-comparison th .print-price { display: block; margin-top: 3px; font-weight: 700; }
+.package-card .package-price { font-size: 15px; font-weight: 400; color: var(--muted); margin: 2px 0 8px; line-height: 1.4; }
+#comparison-table th .compare-price { display: block; margin-top: 4px; font-size: 14px; font-weight: 400; color: var(--muted); }
+#print-comparison th .print-price { display: block; margin-top: 3px; font-weight: 400; }

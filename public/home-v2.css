@@ -22,7 +22,6 @@ body[data-page="home"] .button:focus-visible { outline: 3px solid var(--sage); o
 .hp-facts { list-style: none; padding: 0; margin: 30px 0 0; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--muted); }
 .hp-facts li { display: flex; align-items: center; gap: 8px; }
 .hp-facts li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sage); }
-.hp-facts li:first-child { color: var(--brown); font-weight: 700; }
 .hp-hero-media { margin: 0; }
 .hp-hero-media img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 30px 60px -20px #3f250d55; }
 
@@ -89,7 +88,7 @@ body[data-page="home"] .button:focus-visible { outline: 3px solid var(--sage); o
 .hp-pk { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--sage); border-radius: 6px; padding: 34px 30px 30px; display: flex; flex-direction: column; }
 .hp-pk-tier { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dark-sage); }
 .hp-pk h3 { font-family: var(--tagline); font-size: 28px; color: var(--dark-brown); margin-top: 8px; }
-.hp-pk-price { font-size: 40px; font-weight: 700; color: var(--brown); margin-top: 14px; letter-spacing: -.5px; }
+.hp-pk-price { font-size: 17px; font-weight: 400; color: var(--muted); margin-top: 6px; }
 .hp-pk-desc { margin-top: 8px; color: var(--muted); font-size: 16px; line-height: 1.55; min-height: 50px; }
 .hp-pk ul { list-style: none; padding: 0; margin: 22px 0 28px; border-top: 1px solid var(--line); }
 .hp-pk li { padding: 11px 0 11px 28px; border-bottom: 1px solid #efe8dc; position: relative; font-size: 16px; }
@@ -129,5 +128,5 @@ body[data-page="home"] .button:focus-visible { outline: 3px solid var(--sage); o
   .hp-gallery { grid-template-columns: minmax(0, 1fr); }
   .hp-g-spread, .hp-g-hand { grid-column: auto; }
   .hp-placeholder > div { aspect-ratio: auto; min-height: 150px; }
-  .hp-pk-price { font-size: 34px; }
+  .hp-pk-price { font-size: 17px; font-weight: 400; color: var(--muted); margin-top: 6px; }
 }
