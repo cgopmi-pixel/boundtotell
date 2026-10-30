@@ -54,7 +54,7 @@ function home(copy,data){
 <section class="hp-product" aria-labelledby="product-title"><div class="wrap">
  <div class="hp-product-head"><h2 id="product-title" class="hp-h2">${esc(h.product.title)}</h2><p>${esc(h.product.text)}</p></div>
  <div class="hp-product-grid">
-  <figure class="hp-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1637" height="1276" loading="lazy"></figure>
+  <figure class="hp-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1641" height="1279" loading="lazy"></figure>
   <div class="hp-features"><ul>${h.product.features.map(f=>`<li><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></li>`).join('')}</ul>
   <button class="button secondary" data-open-sample aria-haspopup="dialog" aria-controls="sample-dialog">Read sample pages</button></div>
  </div>
