@@ -33,7 +33,7 @@ function home(copy,data){
  <div class="hp-hero-copy"><h1 id="hero-title">${esc(h.hero.title)}</h1><p class="hp-lede">${esc(h.hero.text)}</p>
  <div class="hp-actions"><a class="button primary" href="#packages">Explore Packages</a>${schedule('secondary')}</div>
  <ul class="hp-facts">${h.hero.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>
- <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell memoir, A Collection of Memories, standing on a wooden table with its cover slightly open" width="1130" height="1130" fetchpriority="high"></figure>
+ <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell hardcover memoir, A Collection of Memories" width="1060" height="1060" fetchpriority="high"></figure>
 </div></section>
 
 <section class="hp-why" aria-labelledby="why-title"><div class="wrap">
