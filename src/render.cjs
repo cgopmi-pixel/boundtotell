@@ -33,7 +33,7 @@ function home(copy,data){
  <div class="hp-hero-copy"><h1 id="hero-title">${esc(h.hero.title)}</h1><p class="hp-lede">${esc(h.hero.text)}</p>
  <div class="hp-actions"><a class="button primary" href="#packages">Explore Packages</a>${schedule('secondary')}</div>
  <ul class="hp-facts">${h.hero.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>
- <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell memoir, A Collection of Memories, lying on a wooden table with its cover partly open to a black-and-white title page" width="1120" height="1120" fetchpriority="high"></figure>
+ <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell memoir, A Collection of Memories, standing on a wooden table with its cover slightly open" width="1090" height="1090" fetchpriority="high"></figure>
 </div></section>
 
 <section class="hp-why" aria-labelledby="why-title"><div class="wrap">
@@ -84,9 +84,15 @@ function home(copy,data){
 }
 function about(copy){
  const [intro,promise,process,mission]=copy.about;
- return shell('about','About Us',`<section class="ab-hero" aria-labelledby="about-title"><div class="wrap ab-narrow"><h1 id="about-title">About Us</h1><p class="ab-intro">${esc(intro)}</p></div></section>
-<section class="ab-body"><div class="wrap ab-grid"><p class="ab-promise">${esc(promise)}</p><div class="ab-process"><p>${esc(process)}</p><ul class="ab-steps" aria-label="What we do"><li>Private, one-on-one interviews</li><li>A clear, cohesive narrative</li><li>Design, layout and graphics</li><li>A unique published memoir</li></ul></div></div></section>
-<section class="ab-mission" aria-labelledby="mission-title"><div class="wrap ab-narrow"><h2 id="mission-title" class="sr-only">Our mission</h2><span class="ab-qmark" aria-hidden="true">“</span><p>${esc(mission)}</p><div class="ab-actions"><a class="button primary" href="./packages.html">Explore Packages</a><a class="button secondary" href="./contact.html">Contact Us</a></div></div></section>`);
+ return shell('about','About Us',`<section class="ab-page" aria-labelledby="about-title"><div class="wrap ab-col">
+ <h1 id="about-title">About Us</h1>
+ <p class="ab-intro">${esc(intro)}</p>
+ <p class="ab-promise">${esc(promise)}</p>
+ <p class="ab-process">${esc(process)}</p>
+ <ul class="ab-steps" aria-label="What we do"><li>Private, one-on-one interviews</li><li>A clear, cohesive narrative</li><li>Design, layout and graphics</li><li>A unique published memoir</li></ul>
+ <figure class="ab-mission"><span class="ab-qmark" aria-hidden="true">“</span><p>${esc(mission)}</p></figure>
+ <div class="ab-actions"><a class="button primary" href="./packages.html">Explore Packages</a><a class="button secondary" href="./contact.html">Contact Us</a></div>
+</div></section>`);
 }
 function samples(copy){return shell('samples','Sample & Testimonials',`<div class="samples-layout wrap"><section class="sample-column" aria-label="Sample Memoir"><button id="sample-open" class="sample-preview" data-open-sample aria-label="Open Sample Memoir" aria-haspopup="dialog" aria-controls="sample-dialog"><img src="./assets/book/sample-pdf-38.webp" alt="Preview of Sample Memoir" width="864" height="1296"><span class="sample-preview-label">Sample Memoir</span></button></section><section class="client-testimonials" aria-labelledby="testimonials-heading"><h1 id="testimonials-heading" class="section-title">From our Satisfied Clients</h1><div class="testimonial-grid">${copy.testimonials.map(t=>`<figure><span class="quote-mark" aria-hidden="true">“</span><blockquote>${esc(t.quote)}</blockquote><figcaption>${esc(t.author)}</figcaption><span class="quote-mark closing-quote" aria-hidden="true">”</span></figure>`).join('')}</div></section></div>`,sample());}
 function faqs(copy){return shell('faqs','FAQs',`<section class="faq-page wrap" aria-labelledby="faq-heading"><header class="page-heading"><h1 id="faq-heading" class="section-title">Frequently Asked Questions</h1></header><div class="faq-list">${copy.faqs.map((f,i)=>`<details id="faq-${i+1}"><summary>${esc(f.question)}<span class="disclosure-symbol" aria-hidden="true"></span></summary><div class="faq-answer">${f.answer.map(t=>`<p>${esc(t)}</p>`).join('')}</div></details>`).join('')}</div></section>`);}

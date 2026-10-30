@@ -182,7 +182,7 @@ assert(!packagesHTML.includes('class="package-controls"'));
 assert(faqPage.html.includes('<h1 id="faq-heading" class="section-title">Frequently Asked Questions</h1>'));
 assert(contact.html.includes('<h1 class="sr-only">Contact Us</h1>'));assert(!contact.html.includes('<h1 class="section-title">Contact Us</h1>'));assert(contact.html.includes('>Contact Us</a>'));
 // About Us: approved copy in the original bookcase layout, listed after Packages.
-{const aboutPage=environment('about.html');const t=decode(aboutPage.html);for(const x of copy.about)assert(t.includes(x));assert.equal(aboutPage.select('.bookcase-frame').length,0);assert(aboutPage.html.includes('class="ab-promise"'));assert(aboutPage.html.indexOf('>Packages</a>')<aboutPage.html.indexOf('>About Us</a>'));assert(aboutPage.html.indexOf('>About Us</a>')<aboutPage.html.indexOf('>Sample &amp; Testimonials</a>'));}
+{const aboutPage=environment('about.html');const t=decode(aboutPage.html);for(const x of copy.about)assert(t.includes(x));assert.equal(aboutPage.select('.bookcase-frame').length,0);assert(aboutPage.html.includes('class="ab-promise"'));assert(aboutPage.html.includes('class="ab-mission"'));assert(aboutPage.html.indexOf('>Packages</a>')<aboutPage.html.indexOf('>About Us</a>'));assert(aboutPage.html.indexOf('>About Us</a>')<aboutPage.html.indexOf('>Sample &amp; Testimonials</a>'));}
 // Homepage redesign: eight sections in order, prices, mockups and the Schedule a Conversation dialog.
 {const order=['hp-hero','hp-why','hp-matters','hp-product','hp-how','hp-gift','hp-packages','hp-cta'].map(c=>home.html.indexOf('class="'+c+'"'));
  order.forEach((v,i)=>{assert(v>0,'missing homepage section '+i);if(i)assert(v>order[i-1],'homepage section out of order '+i);});
