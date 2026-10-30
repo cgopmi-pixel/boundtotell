@@ -23,7 +23,7 @@ function scheduleDialog(){return `<dialog id="inquiry-dialog" class="dialog inqu
 function pkSummary(data,base){
  const pk=data.packages.filter(p=>p.id!=='custom'),custom=data.packages.find(p=>p.id==='custom');
  return `<div class="hp-pk-grid">${pk.map(p=>`<article class="hp-pk" id="summary-${p.id}"><p class="hp-pk-tier">${esc(p.tier.replace(' Package',''))}</p><h3>${esc(p.name)}</h3><p class="hp-pk-price">${esc(p.price)}</p><p class="hp-pk-desc">${esc(p.description)}</p><a class="button secondary" href="${base}#compare-${p.id}" data-show="${p.id}">View Package Details</a></article>`).join('')}</div>
- <article class="hp-legacy" id="summary-custom"><div><p class="hp-pk-tier">Custom</p><h3>Want a larger family history?</h3><p>Our <strong>${esc(custom.name)}</strong> package brings together the family’s history, records and stories from many interviewees. It’s quoted to fit your project.</p></div><a class="button secondary" href="${base}#compare-custom" data-show="custom">View Family Legacy Details</a></article>`;
+ <article class="hp-legacy" id="summary-custom"><div><p class="hp-pk-tier">Custom</p><h3>${esc(custom.name)}</h3><p class="hp-pk-price">${esc(custom.price)}</p><p>Want a larger family history? This package brings together the family’s history, records and stories from many interviewees, and is quoted to fit your project.</p></div><a class="button secondary" href="${base}#compare-custom" data-show="custom">View Family Legacy Details</a></article>`;
 }
 function home(copy,data){
  const h=copy.home,schedule=(cls='primary')=>`<button class="button ${cls}" data-schedule aria-haspopup="dialog" aria-controls="inquiry-dialog">Schedule a Conversation</button>`;
@@ -54,7 +54,7 @@ function home(copy,data){
 <section class="hp-product" aria-labelledby="product-title"><div class="wrap">
  <div class="hp-product-head"><h2 id="product-title" class="hp-h2">${esc(h.product.title)}</h2><p>${esc(h.product.text)}</p></div>
  <div class="hp-product-grid">
-  <figure class="hp-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1528" height="1167" loading="lazy"></figure>
+  <figure class="hp-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1637" height="1276" loading="lazy"></figure>
   <div class="hp-features"><ul>${h.product.features.map(f=>`<li><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></li>`).join('')}</ul>
   <button class="button secondary" data-open-sample aria-haspopup="dialog" aria-controls="sample-dialog">Read sample pages</button></div>
  </div>
@@ -65,15 +65,15 @@ function home(copy,data){
  <ol class="hp-steps">${h.steps.map((s,i)=>`<li><span class="hp-step-icon">${[icon.listen,icon.create,icon.keep][i]}</span><span class="hp-step-num">${i+1}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join('')}</ol>
 </div></section>
 
+<section class="hp-gift" aria-labelledby="gift-title"><div class="wrap hp-split">
+ <figure class="hp-gift-quote"><span class="hp-qmark" aria-hidden="true">“</span><blockquote>${esc(h.gift.quote.text)}</blockquote><span class="hp-qmark hp-qmark-close" aria-hidden="true">”</span><figcaption>${esc(h.gift.quote.author)}</figcaption></figure>
+ <div class="hp-gift-copy"><p class="hp-gift-eyebrow">${esc(h.gift.eyebrow)}</p><h2 id="gift-title" class="hp-h2">${esc(h.gift.title)}</h2><p>${esc(h.gift.text)}</p>${schedule('primary')}</div>
+</div></section>
+
 <section class="hp-packages" id="packages" aria-labelledby="packages-title"><div class="wrap">
  <h2 id="packages-title" class="hp-h2 hp-center">Packages</h2>
  <p class="hp-center hp-sub">Every package includes guided interviews, writing and editing, interior and cover design, photo placement, a print-ready digital edition and printed books.</p>
  ${pkSummary(data,'./packages.html')}
-</div></section>
-
-<section class="hp-gift" aria-labelledby="gift-title"><div class="wrap hp-split">
- <figure class="hp-gift-quote"><span class="hp-qmark" aria-hidden="true">“</span><blockquote>${esc(h.gift.quote.text)}</blockquote><span class="hp-qmark hp-qmark-close" aria-hidden="true">”</span><figcaption>${esc(h.gift.quote.author)}</figcaption></figure>
- <div class="hp-gift-copy"><p class="hp-gift-eyebrow">${esc(h.gift.eyebrow)}</p><h2 id="gift-title" class="hp-h2">${esc(h.gift.title)}</h2><p>${esc(h.gift.text)}</p>${schedule('primary')}</div>
 </div></section>
 
 <section class="hp-cta" aria-labelledby="cta-title"><div class="wrap hp-narrow hp-center">

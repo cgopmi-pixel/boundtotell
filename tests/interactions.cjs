@@ -184,7 +184,7 @@ assert(contact.html.includes('<h1 class="sr-only">Contact Us</h1>'));assert(!con
 // About Us: approved copy in the original bookcase layout, listed after Packages.
 {const aboutPage=environment('about.html');const t=decode(aboutPage.html);for(const x of copy.about)assert(t.includes(x));assert.equal(aboutPage.select('.bookcase-frame').length,0);assert(aboutPage.html.includes('class="ab-promise"'));assert(aboutPage.html.includes('class="ab-mission"'));assert(aboutPage.html.indexOf('>Packages</a>')<aboutPage.html.indexOf('>About Us</a>'));assert(aboutPage.html.indexOf('>About Us</a>')<aboutPage.html.indexOf('>Sample &amp; Testimonials</a>'));}
 // Homepage redesign: eight sections in order, prices, mockups and the Schedule a Conversation dialog.
-{const order=['hp-hero','hp-why','hp-matters','hp-product','hp-how','hp-packages','hp-gift','hp-cta'].map(c=>home.html.indexOf('class="'+c+'"'));
+{const order=['hp-hero','hp-why','hp-matters','hp-product','hp-how','hp-gift','hp-packages','hp-cta'].map(c=>home.html.indexOf('class="'+c+'"'));
  order.forEach((v,i)=>{assert(v>0,'missing homepage section '+i);if(i)assert(v>order[i-1],'homepage section out of order '+i);});
  const text=decode(home.html);for(const t of [copy.home.hero.title,copy.home.why.title,copy.home.gift.title,copy.home.matters.objection,copy.home.cta.title,'$4,500','$7,500','$11,000'])assert(text.includes(t),'homepage missing '+t);
  assert(!/As told to/i.test(home.html));

@@ -8,8 +8,9 @@
 .hp-pk .button { margin-top: auto; }
 .hp-legacy { margin-top: 26px; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--sage); border-radius: 6px; padding: 30px 34px; display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
 .hp-legacy > div { flex: 1 1 420px; min-width: 0; }
-.hp-legacy h3 { font-family: var(--tagline); font-size: 30px; line-height: 1.15; color: var(--dark-brown); margin-top: 8px; }
-.hp-legacy p:not(.hp-pk-tier) { margin-top: 8px; font-size: 17px; line-height: 1.55; color: var(--ink); max-width: 640px; }
+.hp-legacy h3 { font-family: var(--tagline); font-size: 36px; line-height: 1.15; color: var(--dark-brown); margin-top: 8px; }
+.hp-legacy .hp-pk-price { margin-top: 6px; font-size: 17px; color: var(--muted); }
+.hp-legacy p:not(.hp-pk-tier):not(.hp-pk-price) { margin-top: 8px; font-size: 17px; line-height: 1.55; color: var(--ink); max-width: 640px; }
 .hp-legacy strong { color: var(--brown); }
 .hp-pk .button, .hp-legacy .button { font-size: 15px; font-weight: 700; padding: 14px 26px; min-height: 52px; background: transparent; color: var(--brown); border: 1px solid var(--brown); text-decoration: none; transition: background-color .2s, color .2s; }
 .hp-pk .button:hover, .hp-legacy .button:hover { background: var(--brown); color: #fff; }
