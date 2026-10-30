@@ -94,7 +94,11 @@
     "gift": {
       "eyebrow": "A meaningful gift",
       "title": "A gift for someone who already has everything — and has done so much for you.",
-      "text": "Instead of another gift that will eventually be shelved, give your parent or grandparent the chance to tell their story — and give your whole family something they’ll treasure forever."
+      "text": "Instead of another gift that will eventually be shelved, give your parent or grandparent the chance to tell their story — and give your whole family something they’ll treasure forever.",
+      "quote": {
+        "text": "It is especially meaningful to see my grandchildren connecting with our unique family history. They love reading it!",
+        "author": "Chana G."
+      }
     },
     "steps": [
       {
@@ -114,15 +118,15 @@
       "objection": "“But my life isn’t interesting enough for a book.”",
       "answer": "Your grandchildren don’t need you to have been famous.",
       "list": [
-        "What your childhood home looked like.",
-        "What your parents were like.",
-        "The friends and neighbors who shaped you.",
-        "What life was like when you were their age.",
-        "What you struggled through.",
-        "The traditions you hope they’ll carry on."
+        "What was your childhood home like?",
+        "What were your parents like?",
+        "Who were your friends and neighbors?",
+        "What was life like when you were my age?",
+        "What did you have to struggle through?",
+        "Which traditions should we carry on?"
       ],
       "close": "Those are exactly the stories worth saving.",
-      "want": "They want to know…"
+      "want": "They want to ask…"
     },
     "product": {
       "title": "See what you’re creating.",

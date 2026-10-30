@@ -101,75 +101,38 @@ viewer.click('sample-open');assert.equal(viewer.e('sample-image').getAttribute('
 viewer.e('sample-dialog').close();assert(!viewer.document.body.classList.contains('dialog-open'));assert.equal(viewer.window.scrollY,480);assert.equal(viewer.captured.focus.id,'sample-open');
 function expectedSubject(link,subject){const uri=new URL(link);assert.equal(uri.protocol,'mailto:');assert.equal(uri.pathname,'info@boundtotell.com');assert.equal(uri.searchParams.get('subject'),subject);assert(uri.searchParams.get('body').includes('free initial consultation'));if(subject.startsWith('Interested in the '))assert(uri.searchParams.get('body').includes(subject.slice('Interested in the '.length)));}
 function checkHighlight(t,id){
- for(const p of data.packages)assert.equal(t.e('card-'+p.id).classList.contains('highlighted'),p.id===id);
+ for(const p of data.packages)assert.equal(t.e('summary-'+p.id).classList.contains('highlighted'),p.id===id);
  for(const c of t.select('[data-column]'))assert.equal(c.classList.contains('highlighted-column'),c.dataset.column===id);
  const p=data.packages.find(p=>p.id===id);assert.equal(t.e('package-status').textContent,p?p.tier+': '+p.distinction:'');
 }
-for(const width of [320,360,375,390,430,540,541,600,601,650,700,760,768,800,820,844,900,901,912,960,1000,1024,1100,1180,1200,1201,1280,1440,1920]){
- const t=environment('packages.html',width);assert(t.e('comparison-panel').hidden);assert(!t.e('package-cards').hidden);assert(!t.e('inquiry-dialog').open);
- assert.equal(t.select('[data-inquire]').length,8);assert.equal(t.select('[data-fit]').length,0);assert.equal(t.select('[data-highlight]').length,0);
+for(const width of [320,360,375,390,430,540,541,600,700,768,820,900,901,1024,1200,1201,1280,1440,1920]){
+ const t=environment('packages.html',width);assert(!t.e('comparison-panel').hidden);assert(!t.e('inquiry-dialog').open);
+ assert.equal(t.select('[data-inquire]').length,4);assert.equal(t.select('[data-show]').length,4);
  assert(t.e('package-status').classList.contains('sr-only'));checkHighlight(t,null);
- assert.equal(t.e('package-browse').hidden,width>540);
- if(width<=540){
-  assert(t.e('package-prev').disabled);assert(!t.e('package-next').disabled);
-  for(let index=1;index<4;index++){
-   t.click('package-next');assert.equal(t.e('package-position').textContent,`${index+1} of 4`);
-   assert(t.e('package-cards').scrollLeft>0);checkHighlight(t,null);
-  }
-  assert(t.e('package-next').disabled);assert.equal(t.captured.pageScrolls.length,0,'Browse inside the cards without moving the page');
-  t.e('package-cards').scrollLeft=t.cardStride;t.e('package-cards').handlers.scroll();
-  assert.equal(t.e('package-position').textContent,'2 of 4','Swipes update the position');
-  t.click('package-prev');assert.equal(t.e('package-cards').scrollLeft,0);assert(t.e('package-prev').disabled);
-  t.window.innerWidth=820;t.windowEvents.resize();assert(t.e('package-browse').hidden);
-  t.window.innerWidth=width;t.windowEvents.resize();assert(!t.e('package-browse').hidden);
- }
- // Descendant text clicks bubble to each card; changing cards clears the previous one.
+ // Summary card links highlight the matching column in the always-visible comparison chart.
  for(const [index,p]of data.packages.entries()){
-  t.select('.package-description')[index].click();checkHighlight(t,p.id);assert(!t.e('inquiry-dialog').open);
+  const before=t.captured.tableScrolls.length;
+  t.select('[data-show]').find(l=>l.dataset.show===p.id).click();checkHighlight(t,p.id);
+  if(t.tableWidth>t.regionWidth){assert(t.captured.tableScrolls.length>before);assert.equal(t.captured.tableScrolls.at(-1).left,index*t.columnWidth);}
  }
- t.e('card-custom').click();checkHighlight(t,null);
- for(const link of t.select('.footnote-ref')){assert(t.e(link.getAttribute('href').slice(1)));link.click();checkHighlight(t,null);}
- // Tier names are plain text. The card itself supports keyboard highlighting.
- const classicTier=t.e('tier-classic'),classicCard=t.e('card-classic');
- assert.equal(classicTier.tag,'span');assert.equal(classicTier.getAttribute('href'),null);
- classicTier.click();checkHighlight(t,'classic');classicTier.click();checkHighlight(t,null);
- let prevented=false;
- classicCard.handlers.keydown({target:classicCard,key:'Enter',preventDefault(){prevented=true;}});assert(prevented);checkHighlight(t,'classic');
- classicCard.handlers.keydown({target:classicCard,key:' ',preventDefault(){}});checkHighlight(t,null);
- classicCard.handlers.keydown({target:t.select('[data-inquire]')[0],key:'Enter',preventDefault(){assert.fail('Nested consultation key must remain native');}});checkHighlight(t,null);
- t.captured.selection='a copied package detail';t.e('card-classic').click();checkHighlight(t,null);t.captured.selection='';
- t.click('print-packages');assert.equal(t.captured.prints,1);assert(!t.e('package-cards').hidden);
- t.click('table-view');assert(t.e('package-browse').hidden);t.click('print-packages');assert.equal(t.captured.prints,2);assert(t.e('package-cards').hidden);assert(!t.e('comparison-panel').hidden);assert.equal(t.e('table-view').getAttribute('aria-pressed'),'true');
- for(const [index,p]of data.packages.entries()){
-  const before=t.captured.tableScrolls.length,pageScrolls=t.captured.pageScrolls.length;
-  const cell=t.select('[data-column]').find(c=>c.dataset.column===p.id&&c.tag==='td');cell.click();checkHighlight(t,p.id);
-  if(t.tableWidth>t.regionWidth){assert(t.captured.tableScrolls.length>before);assert.equal(t.captured.tableScrolls.at(-1).left,index*t.columnWidth);assert.equal(t.e('comparison-scroll').scrollLeft,Math.min(index*t.columnWidth,t.tableWidth-t.regionWidth));}
-  else assert.equal(t.captured.tableScrolls.length,before);
-  assert.equal(t.captured.pageScrolls.length,pageScrolls,'Highlighting should not move the page');
- }
- t.e('comparison-scroll').scrollLeft=0;t.windowEvents.resize();if(t.tableWidth>t.regionWidth)assert(t.e('comparison-scroll').scrollLeft>0);
- t.click('cards-view');checkHighlight(t,'custom');if(width<=540){assert.equal(t.e('package-position').textContent,'4 of 4');assert(!t.e('package-browse').hidden);}t.e('comparison-scroll').scrollLeft=0;t.click('table-view');checkHighlight(t,'custom');if(t.tableWidth>t.regionWidth)assert(t.e('comparison-scroll').scrollLeft>0);
- t.e('compare-custom').click();checkHighlight(t,null);
- // Every header, detail and action-area cell is a highlight surface. Native title controls toggle once.
+ // Every header, detail and action-area cell is a highlight surface.
  for(const cell of t.select('[data-column]')){cell.click();checkHighlight(t,cell.dataset.column);cell.click();checkHighlight(t,null);}
  const comparisonHeader=t.e('compare-premier');
  assert.equal(comparisonHeader.getAttribute('tabindex'),'0');
  comparisonHeader.handlers.keydown({target:comparisonHeader,key:'Enter',preventDefault(){}});checkHighlight(t,'premier');
  comparisonHeader.handlers.keydown({target:comparisonHeader,key:' ',preventDefault(){}});checkHighlight(t,null);
- const nestedTitle=t.nodes.find(n=>n.tag==='strong'&&n.closest('th')===comparisonHeader);
- nestedTitle.click();checkHighlight(t,'premier');nestedTitle.click();checkHighlight(t,null);
  t.captured.selection='a copied comparison detail';t.e('compare-classic').click();checkHighlight(t,null);t.captured.selection='';
+ t.click('print-packages');assert.equal(t.captured.prints,1);
  for(const button of t.select('[data-inquire]')){
-  const p=data.packages.find(p=>p.id===button.dataset.inquire);button.click();checkHighlight(t,p.id);assert(t.e('inquiry-dialog').open);assert(t.document.body.classList.contains('dialog-open'));assert.equal(t.e('inquiry-package').textContent,p.tier);assert.equal(t.e('inquiry-description').textContent,p.name);expectedSubject(t.e('inquiry-email').getAttribute('href'),'Interested in the '+p.tier+' — '+p.name);assert.equal(t.captured.focus.id,'inquiry-dialog-close');t.click('inquiry-dialog-close');assert.equal(t.captured.focus,button);assert(!t.document.body.classList.contains('dialog-open'));assert.equal(t.window.scrollY,480);
+  const p=data.packages.find(p=>p.id===button.dataset.inquire);button.click();checkHighlight(t,p.id);assert(t.e('inquiry-dialog').open);assert(t.document.body.classList.contains('dialog-open'));assert.equal(t.e('inquiry-package').textContent,p.tier);assert.equal(t.e('inquiry-description').textContent,p.name);expectedSubject(t.e('inquiry-email').getAttribute('href'),'Interested in the '+p.tier+' — '+p.name);
+  t.click('inquiry-dialog-close');assert(!t.e('inquiry-dialog').open);assert.equal(t.captured.focus,button);
  }
- t.click('cards-view');assert(!t.e('package-cards').hidden);assert(t.e('comparison-panel').hidden);
- assert.equal(t.select('.package-extra').length,0);assert.equal(t.e('extra-premier'),undefined);
  t.select('[data-inquire]')[0].click();t.windowEvents.pageshow();assert(!t.e('inquiry-dialog').open);checkHighlight(t,null);
 }
 const packagesHTML=fs.readFileSync(path.join(dist,'packages.html'),'utf8');
 for(const p of data.packages){
- const article=packagesHTML.match(new RegExp('<article[^>]*id="card-'+p.id+'"[\\s\\S]*?</article>'))[0];
- assert(article.indexOf('class="page-count"')<article.indexOf('class="package-fine"'));assert(article.indexOf('class="physical-copies"')<article.indexOf('class="digital-copy"'));assert.equal(article.includes('Possibility of additional copies'),p.id!=='custom');const mainFeatures=article.match(/<ul class="package-features">[\s\S]*?<\/ul>/)[0];assert(!mainFeatures.includes('Possibility of additional copies'));if(p.id!=='custom'){assert(mainFeatures.includes('class="footnote-ref"'));assert(article.indexOf('* Possibility of additional copies')>article.indexOf(p.revisions));}assert(article.indexOf('class="photographs"')<article.indexOf('class="interviewees"'));
+ const summary=packagesHTML.match(new RegExp('<article[^>]*id="summary-'+p.id+'"[\\s\\S]*?</article>'))[0];
+ if(p.id!=='custom')assert(summary.includes(p.price));assert(summary.includes('href="#compare-'+p.id+'"'));
  for(const field of ['description','distinction','pages','interviewees','photos','copies','words','revisions'])assert(!/\bup to\b/i.test(p[field]));
 }
 assert(!packagesHTML.includes('data-fit='));assert(!packagesHTML.includes('Select to highlight a package'));assert(!packagesHTML.includes('explore all four below'));assert(!packagesHTML.includes('your-choice'));assert(!packagesHTML.includes('Download details'));assert(!packagesHTML.includes('Selected memories'));
@@ -188,11 +151,11 @@ assert(packagesHTML.includes('Selected:</p>'));assert(!packagesHTML.includes('Le
 assert(packagesHTML.includes("Please select an option below to arrange a free initial consultation and discuss the story you'd like to preserve."));
 assert(packagesHTML.includes('A full memoir covering the major stages of a life story.'));
 assert(!packagesHTML.includes('agreed after consultation'));assert(!packagesHTML.includes('undefined'));assert(!packagesHTML.includes('NaN'));
-assert.equal((packagesHTML.match(/Word count, interview hours and revision rounds custom/g)||[]).length,3);
+assert.equal((packagesHTML.match(/Word count, interview hours and revision rounds custom/g)||[]).length,2);
 assert.equal((packagesHTML.match(/rowspan="3"/g)||[]).length,2);
 assert(!packagesHTML.includes('Starting at'));assert(!packagesHTML.includes('$15,000'));assert(!packagesHTML.includes('card-number'));
 assert(!packagesHTML.includes('Approximately'));assert(!packagesHTML.includes('Choose the scope'));assert(!packagesHTML.includes('All quotes are estimates only.'));
-assert.equal((decode(packagesHTML).match(/Yes! I'd like a free consultation\.<\/button>/g)||[]).length,8);
+assert.equal((decode(packagesHTML).match(/Yes! I'd like a free consultation\.<\/button>/g)||[]).length,4);
 assert(packagesHTML.includes('Printed copies – custom quantities'));assert(packagesHTML.includes('and printed copies are available for an additional charge. Color interiors,'));
 assert(packagesHTML.includes('id="print-packages"'));assert(packagesHTML.includes('id="package-print"'));assert(packagesHTML.includes('id="print-comparison"'));
 const printSheet=packagesHTML.slice(packagesHTML.indexOf('<section id="package-print"'));
@@ -219,7 +182,7 @@ assert(!packagesHTML.includes('class="package-controls"'));
 assert(faqPage.html.includes('<h1 id="faq-heading" class="section-title">Frequently Asked Questions</h1>'));
 assert(contact.html.includes('<h1 class="sr-only">Contact Us</h1>'));assert(!contact.html.includes('<h1 class="section-title">Contact Us</h1>'));assert(contact.html.includes('>Contact Us</a>'));
 // Homepage redesign: eight sections in order, prices, mockups and the Schedule a Conversation dialog.
-{const order=['hp-hero','hp-why','hp-gift','hp-how','hp-matters','hp-product','hp-packages','hp-cta'].map(c=>home.html.indexOf('class="'+c+'"'));
+{const order=['hp-hero','hp-why','hp-matters','hp-product','hp-how','hp-gift','hp-packages','hp-cta'].map(c=>home.html.indexOf('class="'+c+'"'));
  order.forEach((v,i)=>{assert(v>0,'missing homepage section '+i);if(i)assert(v>order[i-1],'homepage section out of order '+i);});
  const text=decode(home.html);for(const t of [copy.home.hero.title,copy.home.why.title,copy.home.gift.title,copy.home.matters.objection,copy.home.cta.title,'$4,500','$7,500','$11,000'])assert(text.includes(t),'homepage missing '+t);
  assert(!/As told to/i.test(home.html));
