@@ -241,3 +241,9 @@
   .sample-dialog .dialog-title h2 { font-size: 1.125rem; }
   .sample-dialog .sample-controls { padding-block: 6px; }
 }
+/* Larger header logo (all pages) */
+.site-header .brand img { width: 250px; }
+@media (max-width: 1200px) { .site-header .brand img { width: 220px; } }
+@media (max-width: 900px) { .site-header .brand img { width: 200px; } }
+@media (max-width: 540px) { .site-header .brand img { width: 172px; } }
+@media (max-width: 360px) { .site-header .brand img { width: 150px; } }
