@@ -90,7 +90,7 @@ body[data-page="home"] .button:focus-visible { outline: 3px solid var(--sage); o
 .hp-link:hover { border-color: var(--brown); }
 
 /* 7 Packages */
-.hp-packages { background: #f3eee5; padding: 100px 0; }
+.hp-packages { background: var(--paper); padding: 100px 0; border-top: 1px solid #ece4d6; }
 .hp-sub { max-width: 720px; margin: 18px auto 0; font-size: 17px; color: var(--muted); }
 /* 8 Final CTA */
 .hp-cta { background: var(--dark-sage); color: #fff; padding: 96px 0; }
