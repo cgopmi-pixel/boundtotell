@@ -53,3 +53,19 @@
   #package-print .print-notes p { color: #444; }
   .print-contact { color: #000; border-top-color: #555; }
 }
+/* Color accents chosen so a black-and-white printer renders the same grays as before */
+@media print {
+  #package-print, #package-print p, .print-inclusions { color: #1f1308; }
+  .print-heading h1 { color: #3f250d !important; }
+  .print-inclusions strong { color: #3f250d; }
+  #print-comparison th, #print-comparison td { border-color: #5f5a4c; color: #1f1308; }
+  #print-comparison thead th:first-child, #print-comparison tbody th { border-right-color: #3a2c1c; }
+  #print-comparison thead th { background: #dde6d4; border-top: 1.2mm solid #698c60; }
+  #print-comparison thead strong { color: #2d4527; }
+  #print-comparison thead .print-package-name { color: #3b2210; }
+  #print-comparison thead .print-price { color: #3f5a37; }
+  #print-comparison tbody th { background: #f3ede2; color: #2b1a0b; }
+  #print-comparison .fine-row th, #print-comparison .fine-row td { color: #4d4740; border-color: #a39a88; }
+  #package-print .print-notes p { color: #4d4740; }
+  .print-contact { color: #3f250d; border-top: .6mm solid #698c60; }
+}
