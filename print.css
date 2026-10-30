@@ -36,3 +36,20 @@
   .print-contact span:last-child { text-align: right; }
   a { color: inherit; text-decoration: none; }
 }
+/* Crisp in color or black-and-white: black text, neutral gray rules and fills */
+@media print {
+  #package-print, #package-print p { color: #000; }
+  .print-heading h1 { font: 700 20pt/1.1 var(--sans) !important; color: #000 !important; }
+  .print-inclusions { color: #000; }
+  #print-comparison th, #print-comparison td { border-color: #555; color: #000; }
+  #print-comparison thead th:first-child, #print-comparison tbody th { border-right-color: #222; }
+  #print-comparison thead th { background: #e4e4e4; }
+  #print-comparison thead strong { color: #000; font-size: 10pt; }
+  #print-comparison thead .print-package-name { font: 700 12.5pt/1.2 var(--sans) !important; color: #000; }
+  #print-comparison thead .print-price { color: #333; font-weight: 400; }
+  #print-comparison tbody th { background: #f2f2f2; font-weight: 700; color: #000; }
+  #print-comparison .fine-row th, #print-comparison .fine-row td { color: #444; border-color: #999; }
+  #print-comparison .fine-row th { font-weight: 400; }
+  #package-print .print-notes p { color: #444; }
+  .print-contact { color: #000; border-top-color: #555; }
+}

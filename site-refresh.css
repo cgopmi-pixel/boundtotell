@@ -167,3 +167,11 @@
 @media screen and (max-height: 500px) and (orientation: landscape) {
   .sample-dialog .sample-viewer-logo { width: 115px; margin-bottom: 4px; }
 }
+/* Package prices */
+.package-card .package-price { font-size: 15px; font-weight: 400; color: var(--muted); margin: 2px 0 8px; line-height: 1.4; }
+#comparison-table th .compare-price { display: block; margin-top: 4px; font-size: 14px; font-weight: 400; color: var(--muted); }
+#print-comparison th .print-price { display: block; margin-top: 3px; font-weight: 400; }
+/* Comparison chart: clear column separation */
+#comparison-table th[data-column], #comparison-table td[data-column] { border-left: 1px solid #d3c7b4; }
+#comparison-table td[data-column="signature"], #comparison-table td[data-column="custom"] { background-color: #faf6ef; }
+#comparison-table .highlighted-column { background-color: #eef2e8 !important; }

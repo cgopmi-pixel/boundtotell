@@ -241,3 +241,16 @@
   .sample-dialog .dialog-title h2 { font-size: 1.125rem; }
   .sample-dialog .sample-controls { padding-block: 6px; }
 }
+/* Larger header logo (all pages) */
+.site-header .brand img { width: 222px; }
+@media (max-width: 1200px) { .site-header .brand img { width: 200px; } }
+@media (max-width: 900px) { .site-header .brand img { width: 184px; } }
+@media (max-width: 540px) { .site-header .brand img { width: 160px; } }
+@media (max-width: 360px) { .site-header .brand img { width: 150px; } }
+/* Six-item menu: keep each label on one line */
+#site-navigation a { flex: 1 1 auto; white-space: nowrap; padding-left: 16px; padding-right: 16px; }
+@media (max-width: 1200px) { #site-navigation a { padding-left: 9px; padding-right: 9px; font-size: 13px; } }
+@media (max-width: 1000px) { .site-header .brand img { width: 178px; } #site-navigation a { padding-left: 7px; padding-right: 7px; font-size: 12.5px; } }
+/* One heading typeface across the site: Raleway for headings and quotations, Nunito Sans for body text */
+.section-title, .page-heading h1, .included h2, .contact-copy h2, .compare-heading, .testimonial-grid blockquote, .home-story h1 { font-family: var(--tagline); font-style: normal; }
+.contact-copy h2 em { font-style: italic; }
