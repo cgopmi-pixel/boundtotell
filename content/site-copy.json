@@ -154,5 +154,31 @@
       "title": "Whose story will your family preserve?",
       "text": "Let’s talk about creating a book your family will have forever."
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Bound to Tell | Personal & Family Memoir Writing",
+      "description": "Turn a parent’s or grandparent’s life story into a beautifully written, designed and printed book, through guided interviews. Packages from $4,500."
+    },
+    "packages": {
+      "title": "Memoir Packages & Prices | Bound to Tell",
+      "description": "Compare Bound to Tell memoir packages: Treasured Memories ($4,500), A Life in Words ($7,500), The Full Story ($11,000) and a custom Family Legacy option."
+    },
+    "about": {
+      "title": "About Us | Bound to Tell Personal & Family Memoirs",
+      "description": "Bound to Tell transforms treasured memories into beautifully published books, through private interviews, careful writing and thoughtful design."
+    },
+    "samples": {
+      "title": "Sample Memoir Pages & Client Testimonials | Bound to Tell",
+      "description": "See sample pages from a Bound to Tell family memoir and read what our clients say about preserving their loved ones’ stories."
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions | Bound to Tell",
+      "description": "How the memoir process works, what to prepare for interviews, choosing a package, reviewing the manuscript, timelines and ordering extra printed copies."
+    },
+    "contact": {
+      "title": "Contact Us | Bound to Tell",
+      "description": "Start with a free consultation about preserving your family’s story. Call or text 732.344.0886 or email info@boundtotell.com."
+    }
   }
 }
