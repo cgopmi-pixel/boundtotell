@@ -105,7 +105,7 @@ body[data-page="home"] .button:focus-visible { outline: 3px solid var(--sage); o
   .hp-why-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .hp-hero-grid, .hp-split, .hp-product-head { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .hp-hero { padding: 40px 0 56px; }
-  .hp-hero-media { max-width: 620px; }
+  .hp-hero-media { max-width: min(460px, 100%); margin-inline: auto; }
   .hp-gift-quote { order: 2; }
   .hp-product-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 }

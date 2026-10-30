@@ -33,7 +33,7 @@ function home(copy,data){
  <div class="hp-hero-copy"><h1 id="hero-title">${esc(h.hero.title)}</h1><p class="hp-lede">${esc(h.hero.text)}</p>
  <div class="hp-actions"><a class="button primary" href="#packages">Explore Packages</a>${schedule('secondary')}</div>
  <ul class="hp-facts">${h.hero.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>
- <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell hardcover memoir, A Collection of Memories" width="1060" height="1060" fetchpriority="high"></figure>
+ <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell softcover memoir, A Collection of Memories" width="1200" height="1200" fetchpriority="high"></figure>
 </div></section>
 
 <section class="hp-why" aria-labelledby="why-title"><div class="wrap">
@@ -54,7 +54,7 @@ function home(copy,data){
 <section class="hp-product" aria-labelledby="product-title"><div class="wrap">
  <div class="hp-product-head"><h2 id="product-title" class="hp-h2">${esc(h.product.title)}</h2><p>${esc(h.product.text)}</p></div>
  <div class="hp-product-grid">
-  <figure class="hp-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1700" height="1320" loading="lazy"></figure>
+  <figure class="hp-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1690" height="1359" loading="lazy"></figure>
   <div class="hp-features"><ul>${h.product.features.map(f=>`<li><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></li>`).join('')}</ul>
   <button class="button secondary" data-open-sample aria-haspopup="dialog" aria-controls="sample-dialog">Read sample pages</button></div>
  </div>
