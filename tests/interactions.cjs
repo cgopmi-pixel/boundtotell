@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
 const decode=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 function attrs(raw){const a={};for(const m of raw.matchAll(/([\w-]+)(?:="([^"]*)")?/g))a[m[1]]=decode(m[2]??'');return a;}
 function environment(file,width=1280){
- const html=fs.readFileSync(path.join(dist,file),'utf8'),nodes=[],byId=new Map(),windowEvents={},captured={focus:null,focusOptions:null,pageScrolls:[],tableScrolls:[],cardScrolls:[],selection:"",prints:0};
+ const html=fs.readFileSync(path.join(dist,file),'utf8').replace(/\?v=[a-f0-9]{8}/g,''),nodes=[],byId=new Map(),windowEvents={},captured={focus:null,focusOptions:null,pageScrolls:[],tableScrolls:[],cardScrolls:[],selection:"",prints:0};
  // Controlled geometry exercises scroll calculations; this is not a CSS renderer.
  const regionWidth=Math.min(width-40,1200),labelWidth=100;
  const tableWidth=width<=650?4*regionWidth-3*labelWidth:Math.max(950,regionWidth);
@@ -49,13 +49,14 @@ function environment(file,width=1280){
 const copy=JSON.parse(fs.readFileSync(path.join(root,'content/site-copy.json'),'utf8'));
 const data=JSON.parse(fs.readFileSync(path.join(root,'content/packages.json'),'utf8'));
 for(const file of ['index.html','packages.html','about.html','samples.html','faqs.html','contact.html']){
- const html=fs.readFileSync(path.join(dist,file),'utf8'),ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'duplicate IDs in '+file);
+ const rawHtml=fs.readFileSync(path.join(dist,file),'utf8');for(const m of rawHtml.matchAll(/(?:src|href)="\.\/([\w.-]+\.(?:css|js))\?v=([a-f0-9]{8})"/g))assert.equal(crypto.createHash('sha1').update(fs.readFileSync(path.join(dist,m[1]))).digest('hex').slice(0,8),m[2],'stale version tag '+m[1]);
+ const html=rawHtml.replace(/\?v=[a-f0-9]{8}/g,''),ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'duplicate IDs in '+file);
  assert.equal((html.match(/aria-current="page"/g)||[]).length,1);
  for(const route of ['index.html','packages.html','about.html','samples.html','faqs.html','contact.html'])assert(html.includes('href="./'+route+'"'));
  assert(/<footer[\s\S]*class="footer-logo"[\s\S]*© 2026 Bound to Tell/.test(html));
- for(const m of html.matchAll(/(?:src|href)="(\.\/[^"#]+)"/g))assert(fs.existsSync(path.resolve(dist,m[1])),file+' missing '+m[1]);
+ for(const m of html.matchAll(/(?:src|href)="(\.\/[^"#?]+)/g))assert(fs.existsSync(path.resolve(dist,m[1])),file+' missing '+m[1]);
  assert(html.includes('width=device-width, initial-scale=1, viewport-fit=cover'));assert(!html.includes('user-scalable=no'));assert(!html.includes('maximum-scale='));
- assert(html.includes('href="./small-screens.css" media="screen"'));assert(html.indexOf('./small-screens.css')>html.indexOf('./site-refresh.css'));assert(html.includes('href="./responsive.css"'));assert(html.includes('href="./device-layout.css"'));assert(html.includes('href="./site-refresh.css"'));
+ assert(/href="\.\/small-screens\.css(\?v=[a-f0-9]+)?" media="screen"/.test(html));assert(html.indexOf('./small-screens.css')>html.indexOf('./site-refresh.css'));assert(html.includes('href="./responsive.css"'));assert(html.includes('href="./device-layout.css"'));assert(html.includes('href="./site-refresh.css"'));
  assert(!html.includes('noindex, nofollow'),'Primary pages must not retain draft indexing metadata');
 }
 const home=environment('index.html');
@@ -129,7 +130,7 @@ for(const width of [320,360,375,390,430,540,541,600,700,768,820,900,901,1024,120
  }
  t.select('[data-inquire]')[0].click();t.windowEvents.pageshow();assert(!t.e('inquiry-dialog').open);checkHighlight(t,null);
 }
-const packagesHTML=fs.readFileSync(path.join(dist,'packages.html'),'utf8');
+const packagesHTML=fs.readFileSync(path.join(dist,'packages.html'),'utf8').replace(/\?v=[a-f0-9]{8}/g,'');
 for(const p of data.packages){
  const summary=packagesHTML.match(new RegExp('<article[^>]*id="summary-'+p.id+'"[\\s\\S]*?</article>'))[0];
  if(p.id!=='custom')assert(summary.includes(p.price));assert(summary.includes('href="#compare-'+p.id+'"'));
