@@ -16,7 +16,7 @@ function sample(){return `<dialog id="sample-dialog" class="dialog sample-dialog
 function contactOptions(prefix){return `<div class="contact-options"><div class="contact-method"><span>Call or text</span><a class="button primary phone-connect" href="tel:+17323440886">732.344.0886</a></div><div class="contact-method"><span>Email</span><a id="${prefix}-email" class="button primary email-connect" href="${esc(email())}">info@boundtotell.com</a></div></div>`;}
 function inquiry(){return `<dialog id="inquiry-dialog" class="dialog inquiry-dialog" aria-labelledby="inquiry-title inquiry-package" aria-describedby="inquiry-instruction"><header class="dialog-header"><div><p id="inquiry-title" class="inquiry-label">Selected:</p><h2 id="inquiry-package"></h2></div><button id="inquiry-dialog-close" class="icon-button close-button" aria-label="Close package inquiry">${cross}</button></header><div class="inquiry-body"><p id="inquiry-description" class="inquiry-description"></p><p id="inquiry-instruction">Please select an option below to arrange a free initial consultation and discuss the story you'd like to preserve.</p>${contactOptions('inquiry')}</div></dialog>`;}
 const icon={
- listen:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 30c0-9 6-16 14-16s14 7 14 16"/><path d="M8 30h6v10H8zM34 30h6v10h-6z"/></svg>',
+ listen:'<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="12" cy="25" r="5"/><path d="M3 43c0-5.5 4-9.5 9-9.5s9 4 9 9.5"/><circle cx="36" cy="25" r="5"/><path d="M27 43c0-5.5 4-9.5 9-9.5s9 4 9 9.5"/><path d="M19 4h11a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-5l-4 3.5V15h-2a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/></svg>',
  create:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38 32 16l4 4-22 22H10z"/><path d="m29 19 4 4M8 8h14M8 14h9"/></svg>',
  keep:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12c6-2 11-1 16 3 5-4 10-5 16-3v26c-6-2-11-1-16 3-5-4-10-5-16-3z"/><path d="M24 15v26"/></svg>'};
 function scheduleDialog(){return `<dialog id="inquiry-dialog" class="dialog inquiry-dialog" aria-labelledby="inquiry-package" aria-describedby="inquiry-instruction"><header class="dialog-header"><div><p class="inquiry-label">Schedule a conversation</p><h2 id="inquiry-package">Free initial consultation</h2></div><button id="inquiry-dialog-close" class="icon-button close-button" aria-label="Close">${cross}</button></header><div class="inquiry-body"><p id="inquiry-instruction">Call, text or email us and we’ll set up a time to talk about the story you’d like to preserve, the scope of the book, package options and timeline.</p>${contactOptions('schedule')}</div></dialog>`;}
@@ -25,10 +25,10 @@ function home(copy,data){
  const pk=data.packages.filter(p=>p.id!=='custom'),custom=data.packages.find(p=>p.id==='custom');
  const body=`
 <section class="hp-hero" aria-labelledby="hero-title"><div class="wrap hp-hero-grid">
- <div class="hp-hero-copy"><p class="hp-eyebrow">${esc(h.hero.eyebrow)}</p><h1 id="hero-title">${esc(h.hero.title)}</h1><p class="hp-lede">${esc(h.hero.text)}</p>
+ <div class="hp-hero-copy"><h1 id="hero-title">${esc(h.hero.title)}</h1><p class="hp-lede">${esc(h.hero.text)}</p>
  <div class="hp-actions"><a class="button primary" href="#packages">Explore Packages</a>${schedule('secondary')}</div>
  <ul class="hp-facts">${h.hero.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>
- <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell memoir, A Collection of Memories, standing on a wooden table beside a second copy" width="1500" height="1250" fetchpriority="high"></figure>
+ <figure class="hp-hero-media"><img src="./assets/mockups/hero-book.webp" alt="A finished Bound to Tell memoir, A Collection of Memories, standing on a wooden table" width="1300" height="1300" fetchpriority="high"></figure>
 </div></section>
 
 <section class="hp-why" aria-labelledby="why-title"><div class="wrap hp-narrow">
@@ -39,8 +39,8 @@ function home(copy,data){
 </div></section>
 
 <section class="hp-gift" aria-labelledby="gift-title"><div class="wrap hp-split">
- <figure class="hp-gift-media"><img src="./assets/mockups/family-copies.webp" alt="Three printed copies of a Bound to Tell memoir stacked on a wooden table" width="1600" height="1120" loading="lazy"></figure>
- <div class="hp-gift-copy"><p class="hp-eyebrow">A meaningful gift</p><h2 id="gift-title" class="hp-h2">${esc(h.gift.title)}</h2><p>${esc(h.gift.text)}</p>${schedule('primary')}</div>
+ <figure class="hp-gift-media"><img src="./assets/mockups/gift-wrapped.webp" alt="A book wrapped in brown paper with a green ribbon and a tag that reads With love" width="1500" height="1125" loading="lazy"></figure>
+ <div class="hp-gift-copy"><p class="hp-gift-eyebrow">${esc(h.gift.eyebrow)}</p><h2 id="gift-title" class="hp-h2">${esc(h.gift.title)}</h2><p>${esc(h.gift.text)}</p>${schedule('primary')}</div>
 </div></section>
 
 <section class="hp-how" aria-labelledby="how-title"><div class="wrap">
@@ -50,34 +50,32 @@ function home(copy,data){
 
 <section class="hp-matters" aria-labelledby="matters-title"><div class="wrap hp-narrow">
  <h2 id="matters-title" class="hp-objection">${esc(h.matters.objection)}</h2>
- <p class="hp-answer">${esc(h.matters.answer)} <span>They want to know…</span></p>
+ <p class="hp-answer">${esc(h.matters.answer)}<br>${esc(h.matters.want)}</p>
  <ul class="hp-memories">${h.matters.list.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
  <p class="hp-matters-close">${esc(h.matters.close)}</p>
 </div></section>
 
 <section class="hp-product" aria-labelledby="product-title"><div class="wrap">
  <div class="hp-product-head"><h2 id="product-title" class="hp-h2">${esc(h.product.title)}</h2><p>${esc(h.product.text)}</p></div>
- <div class="hp-gallery">
-  <figure class="hp-g-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1600" height="1120" loading="lazy"><figcaption>Interior spread — chapters, photographs and captions</figcaption></figure>
-  <figure class="hp-g-cover"><img src="./assets/mockups/cover-front.webp" alt="Front cover of A Collection of Memories" width="900" height="1370" loading="lazy"><figcaption>A custom-designed cover</figcaption></figure>
-  <figure class="hp-g-page"><img src="./assets/book/sample-pdf-39.webp" alt="A sample memoir page with a family photograph" width="864" height="1296" loading="lazy"><figcaption>Family photographs, restored and placed</figcaption></figure>
-  <figure class="hp-g-hand hp-placeholder" data-preview-only><div><strong>Photo to come</strong><span>The finished book in someone’s hands — best captured as a real photograph.</span></div><figcaption>Held, read and passed down</figcaption></figure>
+ <div class="hp-product-grid">
+  <figure class="hp-spread"><img src="./assets/mockups/interior-spread.webp" alt="An open Bound to Tell memoir showing a chapter opening with photographs and captions" width="1700" height="1320" loading="lazy"></figure>
+  <div class="hp-features"><ul>${h.product.features.map(f=>`<li><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></li>`).join('')}</ul>
+  <button class="button secondary" data-open-sample aria-haspopup="dialog" aria-controls="sample-dialog">Read sample pages</button></div>
  </div>
- <p class="hp-center"><a class="hp-link" href="./samples.html">Read sample pages →</a></p>
 </div></section>
 
 <section class="hp-packages" id="packages" aria-labelledby="packages-title"><div class="wrap">
  <h2 id="packages-title" class="hp-h2 hp-center">Packages</h2>
- <p class="hp-center hp-sub">Every package includes guided interviews, writing and editing, interior and cover design, photo placement, printed books and a print-ready digital edition.</p>
- <div class="hp-pk-grid">${pk.map(p=>`<article class="hp-pk"><p class="hp-pk-tier">${esc(p.tier.replace(' Package',''))}</p><h3>${esc(p.name)}</h3><p class="hp-pk-price">${esc(p.price)}</p><p class="hp-pk-desc">${esc(p.description)}</p><ul><li>${esc(p.pages)}</li><li>${esc(p.interviewees)}</li><li>${esc(p.photos)}</li><li>${esc(p.copies)}</li><li>${esc(p.hours)}</li></ul><a class="button secondary" href="./packages.html#card-${p.id}">View Package Details</a></article>`).join('')}</div>
- <p class="hp-center hp-custom">Planning a larger family history? Our <a href="./packages.html#card-custom">${esc(custom.name)}</a> package is quoted to fit your project.</p>
+ <p class="hp-center hp-sub">Every package includes guided interviews, writing and editing, interior and cover design, photo placement, a print-ready digital edition and printed books.</p>
+ <div class="hp-pk-grid">${pk.map(p=>`<article class="hp-pk"><p class="hp-pk-tier">${esc(p.tier.replace(' Package',''))}</p><h3>${esc(p.name)}</h3><p class="hp-pk-price">${esc(p.price)}</p><p class="hp-pk-desc">${esc(p.description)}</p><a class="button secondary" href="./packages.html#compare-${p.id}">View Package Details</a></article>`).join('')}</div>
+ <article class="hp-legacy"><div><p class="hp-pk-tier">Custom</p><h3>Want a larger family history?</h3><p>Our <strong>${esc(custom.name)}</strong> package brings together the family’s history, records and stories from many interviewees. It’s quoted to fit your project.</p></div><a class="button primary" href="./packages.html#compare-custom">View Family Legacy Details</a></article>
 </div></section>
 
 <section class="hp-cta" aria-labelledby="cta-title"><div class="wrap hp-narrow hp-center">
  <h2 id="cta-title">${esc(h.cta.title)}</h2><p>${esc(h.cta.text)}</p>${schedule('light')}
  <p class="hp-cta-contact"><a href="tel:+17323440886">732.344.0886</a><span aria-hidden="true">·</span><a href="${esc(email())}">info@boundtotell.com</a></p>
 </div></section>`;
- return shell('home','Home',body,scheduleDialog());
+ return shell('home','Home',body,scheduleDialog()+sample());
 }
 function samples(copy){return shell('samples','Sample & Testimonials',`<div class="samples-layout wrap"><section class="sample-column" aria-label="Sample Memoir"><button id="sample-open" class="sample-preview" data-open-sample aria-label="Open Sample Memoir" aria-haspopup="dialog" aria-controls="sample-dialog"><img src="./assets/book/sample-pdf-38.webp" alt="Preview of Sample Memoir" width="864" height="1296"><span class="sample-preview-label">Sample Memoir</span></button></section><section class="client-testimonials" aria-labelledby="testimonials-heading"><h1 id="testimonials-heading" class="section-title">From our Satisfied Clients</h1><div class="testimonial-grid">${copy.testimonials.map(t=>`<figure><span class="quote-mark" aria-hidden="true">“</span><blockquote>${esc(t.quote)}</blockquote><figcaption>${esc(t.author)}</figcaption><span class="quote-mark closing-quote" aria-hidden="true">”</span></figure>`).join('')}</div></section></div>`,sample());}
 function faqs(copy){return shell('faqs','FAQs',`<section class="faq-page wrap" aria-labelledby="faq-heading"><header class="page-heading"><h1 id="faq-heading" class="section-title">Frequently Asked Questions</h1></header><div class="faq-list">${copy.faqs.map((f,i)=>`<details id="faq-${i+1}"><summary>${esc(f.question)}<span class="disclosure-symbol" aria-hidden="true"></span></summary><div class="faq-answer">${f.answer.map(t=>`<p>${esc(t)}</p>`).join('')}</div></details>`).join('')}</div></section>`);}

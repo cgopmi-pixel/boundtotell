@@ -70,13 +70,11 @@
   "aboutBoldIndex": 1,
   "home": {
     "hero": {
-      "eyebrow": "Personal & family memoirs",
       "title": "Turn a lifetime of memories into a book your family will treasure for generations.",
-      "text": "Through guided interviews, family photographs and letters, Bound to Tell turns a life story into a professionally written, beautifully designed book.",
+      "text": "Through guided interviews and family photographs, Bound to Tell turns a life story into a professionally written, beautifully designed book.",
       "facts": [
         "Packages from $4,500",
-        "Free initial consultation",
-        "Printed books for the whole family"
+        "Free initial consultation"
       ]
     },
     "why": {
@@ -86,7 +84,7 @@
         "How your parents met.",
         "What your grandfather remembers about coming to America.",
         "The business your father built.",
-        "The recipes, the struggles, the funny moments, and the family history your children have never heard."
+        "The recipes, the struggles, the funny moments, and the family history your children never heard."
       ],
       "close": [
         "Once those stories are gone, they can’t be recreated.",
@@ -94,9 +92,9 @@
       ]
     },
     "gift": {
-      "eyebrow": "The gift angle",
-      "title": "A gift for the person who already has everything — and has done so much for you.",
-      "text": "Instead of another gift that eventually gets put away, give your parent or grandparent the chance to tell their story — and give your whole family something they’ll keep forever."
+      "eyebrow": "A meaningful gift",
+      "title": "A gift for someone who already has everything — and has done so much for you.",
+      "text": "Instead of another gift that will eventually be shelved, give your parent or grandparent the chance to tell their story — and give your whole family something they’ll treasure forever."
     },
     "steps": [
       {
@@ -105,7 +103,7 @@
       },
       {
         "title": "We create",
-        "text": "We organize and write the story, then professionally design the book."
+        "text": "We organize, write and edit the story, then professionally design the book."
       },
       {
         "title": "Your family keeps it forever",
@@ -118,19 +116,38 @@
       "list": [
         "What your childhood home looked like.",
         "What your parents were like.",
-        "How you met your spouse.",
+        "The friends and neighbors who shaped you.",
         "What life was like when you were their age.",
         "What you struggled through.",
-        "What you learned."
+        "The traditions you hope they’ll carry on."
       ],
-      "close": "Those are exactly the stories worth saving."
+      "close": "Those are exactly the stories worth saving.",
+      "want": "They want to know…"
     },
     "product": {
       "title": "See what you’re creating.",
-      "text": "Every Bound to Tell memoir is professionally written, designed and printed — a book that belongs on the coffee table, not in a drawer."
+      "text": "Every Bound to Tell memoir is professionally written, designed and printed — a book that belongs on the coffee table, not in a drawer.",
+      "features": [
+        {
+          "title": "A custom-designable cover",
+          "text": "Designed around your story, with your own photographs, colors and title."
+        },
+        {
+          "title": "Chapters that read like a book",
+          "text": "Your memories organized into a clear, engaging narrative, chapter by chapter."
+        },
+        {
+          "title": "Photographs with captions",
+          "text": "Family photos placed throughout the text, each with a caption that tells its story."
+        },
+        {
+          "title": "Professionally printed",
+          "text": "Bound copies for the family, plus a print-ready digital edition."
+        }
+      ]
     },
     "cta": {
-      "title": "Whose story does your family need to preserve?",
+      "title": "Whose story will your family preserve?",
       "text": "Let’s talk about creating a book your family will have forever."
     }
   }

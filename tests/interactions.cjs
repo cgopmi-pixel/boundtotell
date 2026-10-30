@@ -84,7 +84,7 @@ for(const width of [320,360,390,540,600,650,760,768,820,900,901,912,1024,1200,14
  t.media.matches=false;t.media.change();assert(!t.e('site-navigation').hidden);assert(t.e('nav-toggle').hidden);
  t.media.matches=true;t.media.change();assert(t.e('site-navigation').hidden);assert(!t.e('nav-toggle').hidden);
 }
-assert(!home.e('sample-open'));assert(!home.e('sample-dialog'));assert(!home.html.includes('data-open-sample'));
+assert(home.e('sample-dialog'));assert(home.html.includes('data-open-sample'));{const prod=home.html.slice(home.html.indexOf('class="hp-product"'),home.html.indexOf('class="hp-packages"'));assert(!prod.includes('samples.html'));assert(prod.includes('data-open-sample'));}
 assert.equal(samplesPage.select('[data-open-sample]').length,1);assert(samplesPage.e('sample-open').classList.contains('sample-preview'));assert(!samplesPage.html.includes('sample-button'));assert(samplesPage.html.includes('>From our Satisfied Clients</h1>'));assert(samplesPage.html.includes('class="sample-preview-label">Sample Memoir</span>'));assert(samplesPage.html.includes('id="sample-title">Sample Memoir</h2>'));assert.equal(samplesPage.select('.quote-mark').length,4);assert.equal(samplesPage.select('.closing-quote').length,2);
 const viewer=samplesPage;
 viewer.click('sample-open');assert(viewer.e('sample-dialog').open);assert.equal(viewer.captured.focus.id,'sample-dialog-close');assert.equal(viewer.e('sample-image').getAttribute('src'),'./assets/book/sample-pdf-38.webp');assert(viewer.e('sample-prev').disabled);

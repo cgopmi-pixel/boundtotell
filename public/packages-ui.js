@@ -51,6 +51,8 @@
   const href=p.inquiryEmail;$('inquiry-email').setAttribute('href',href);window.BTT_UI.openDialog('inquiry-dialog',button);
  }));
  $('print-packages').addEventListener('click',()=>window.print());
- window.addEventListener('pageshow',()=>{highlight(null);if($('inquiry-dialog').open)$('inquiry-dialog').close();});
+ function applyHash(){const m=((window.location&&window.location.hash)||'').match(/^#compare(?:-(classic|signature|premier|custom))?$/);if(!m)return;showView(true);highlight(m[1]||null);const panel=$('comparison-panel');if(panel.scrollIntoView)panel.scrollIntoView({block:'start'});}
+ window.addEventListener('pageshow',()=>{highlight(null);if($('inquiry-dialog').open)$('inquiry-dialog').close();applyHash();});
+ window.addEventListener('hashchange',applyHash);
  window.addEventListener('resize',()=>{revealColumn(active);updateBrowse();revealCard(browseIndex);});
 })();
