@@ -118,15 +118,15 @@
       "objection": "“But my life isn’t interesting enough for a book.”",
       "answer": "Your grandchildren don’t need you to have been famous.",
       "list": [
-        "What was your childhood home like?",
-        "What were your parents like?",
-        "Who were your friends and neighbors?",
-        "What was life like when you were my age?",
-        "What did you have to struggle through?",
-        "Which traditions should we carry on?"
+        "What your childhood home looked like.",
+        "What your parents were like.",
+        "The friends and neighbors who shaped you.",
+        "What life was like when you were their age.",
+        "What you struggled through.",
+        "The traditions you hope they’ll carry on."
       ],
       "close": "Those are exactly the stories worth saving.",
-      "want": "They want to ask…"
+      "want": "They want to know…"
     },
     "product": {
       "title": "See what you’re creating.",

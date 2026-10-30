@@ -247,3 +247,7 @@
 @media (max-width: 900px) { .site-header .brand img { width: 200px; } }
 @media (max-width: 540px) { .site-header .brand img { width: 172px; } }
 @media (max-width: 360px) { .site-header .brand img { width: 150px; } }
+/* Six-item menu: keep each label on one line */
+#site-navigation a { flex: 1 1 auto; white-space: nowrap; padding-left: 16px; padding-right: 16px; }
+@media (max-width: 1200px) { #site-navigation a { padding-left: 9px; padding-right: 9px; font-size: 13px; } }
+@media (max-width: 1000px) { .site-header .brand img { width: 190px; } #site-navigation a { padding-left: 7px; padding-right: 7px; font-size: 12.5px; } }

@@ -9,6 +9,6 @@ const copy=JSON.parse(fs.readFileSync(path.join(root,'content/site-copy.json'),'
 const data=JSON.parse(fs.readFileSync(path.join(root,'content/packages.json'),'utf8'));
 const render=require(path.join(root,'src/render.cjs'));
 fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(path.join(root,'public'),dist,{recursive:true});
-for(const [file,html] of [['index.html',render.home(copy,data)],['packages.html',render.packagePage(data)],['contact.html',render.contact()],['samples.html',render.samples(copy)],['faqs.html',render.faqs(copy)]])fs.writeFileSync(path.join(dist,file),html);
+for(const [file,html] of [['index.html',render.home(copy,data)],['packages.html',render.packagePage(data)],['about.html',render.about(copy)],['contact.html',render.contact()],['samples.html',render.samples(copy)],['faqs.html',render.faqs(copy)]])fs.writeFileSync(path.join(dist,file),html);
 fs.writeFileSync(path.join(dist,'package-data.js'),'window.BTT_PACKAGES = '+JSON.stringify(data.packages.map(p=>({...p,inquiryEmail:render.email(p)})))+';\n');
-console.log('Built all five pages, the printable comparison and preserved website in dist/. No deployment performed.');
+console.log('Built all six pages, the printable comparison and preserved website in dist/. No deployment performed.');

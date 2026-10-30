@@ -48,10 +48,10 @@ function environment(file,width=1280){
 }
 const copy=JSON.parse(fs.readFileSync(path.join(root,'content/site-copy.json'),'utf8'));
 const data=JSON.parse(fs.readFileSync(path.join(root,'content/packages.json'),'utf8'));
-for(const file of ['index.html','packages.html','samples.html','faqs.html','contact.html']){
+for(const file of ['index.html','packages.html','about.html','samples.html','faqs.html','contact.html']){
  const html=fs.readFileSync(path.join(dist,file),'utf8'),ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'duplicate IDs in '+file);
  assert.equal((html.match(/aria-current="page"/g)||[]).length,1);
- for(const route of ['index.html','packages.html','samples.html','faqs.html','contact.html'])assert(html.includes('href="./'+route+'"'));
+ for(const route of ['index.html','packages.html','about.html','samples.html','faqs.html','contact.html'])assert(html.includes('href="./'+route+'"'));
  assert(/<footer[\s\S]*class="footer-logo"[\s\S]*© 2026 Bound to Tell/.test(html));
  for(const m of html.matchAll(/(?:src|href)="(\.\/[^"#]+)"/g))assert(fs.existsSync(path.resolve(dist,m[1])),file+' missing '+m[1]);
  assert(html.includes('width=device-width, initial-scale=1, viewport-fit=cover'));assert(!html.includes('user-scalable=no'));assert(!html.includes('maximum-scale='));
@@ -181,6 +181,8 @@ assert(packagesHTML.indexOf('class="view-switch"')<packagesHTML.indexOf('id="inc
 assert(!packagesHTML.includes('class="package-controls"'));
 assert(faqPage.html.includes('<h1 id="faq-heading" class="section-title">Frequently Asked Questions</h1>'));
 assert(contact.html.includes('<h1 class="sr-only">Contact Us</h1>'));assert(!contact.html.includes('<h1 class="section-title">Contact Us</h1>'));assert(contact.html.includes('>Contact Us</a>'));
+// About Us: approved copy in the original bookcase layout, listed after Packages.
+{const aboutPage=environment('about.html');const t=decode(aboutPage.html);for(const x of copy.about)assert(t.includes(x));assert(aboutPage.html.includes('<strong>'+copy.about[copy.aboutBoldIndex]+'</strong>'));assert.equal(aboutPage.select('.bookcase-frame').length,1);assert(aboutPage.html.indexOf('>Packages</a>')<aboutPage.html.indexOf('>About Us</a>'));assert(aboutPage.html.indexOf('>About Us</a>')<aboutPage.html.indexOf('>Sample &amp; Testimonials</a>'));}
 // Homepage redesign: eight sections in order, prices, mockups and the Schedule a Conversation dialog.
 {const order=['hp-hero','hp-why','hp-matters','hp-product','hp-how','hp-gift','hp-packages','hp-cta'].map(c=>home.html.indexOf('class="'+c+'"'));
  order.forEach((v,i)=>{assert(v>0,'missing homepage section '+i);if(i)assert(v>order[i-1],'homepage section out of order '+i);});
